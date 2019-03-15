@@ -3,10 +3,10 @@
 
 ## Build
 ```
- sbt build
+ sbt compile
 ```
 
 ## Package
 ```
-sbt package
+sbt assembly
 ```
