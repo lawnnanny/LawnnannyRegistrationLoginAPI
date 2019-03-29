@@ -1,4 +1,4 @@
-package hello
+package lambdas.ResponseAndMessageTypes
 
 import scala.beans.BeanProperty
 
