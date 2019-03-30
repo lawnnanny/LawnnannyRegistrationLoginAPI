@@ -1,6 +1,8 @@
 package lambdas.hello
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
+import lambdas.ResponseAndMessageTypes.{ApiGatewayRequest, ApiGatewayResponse}
+
 import scala.collection.JavaConverters
 import lambdas._
 

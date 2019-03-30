@@ -16,7 +16,8 @@ libraryDependencies ++= Seq(
 )
 
 libraryDependencies += "io.github.mkotsur" %% "aws-lambda-scala" % {"0.1.1"}
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.4" % "test"
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.5" % "test"
 libraryDependencies += "org.typelevel" %% "cats-effect" % "1.0.0" withSources() withJavadoc()
 
 scalacOptions ++= Seq(

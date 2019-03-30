@@ -1,9 +1,10 @@
 package lambdas.registration
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
-import com.sun.xml.internal.bind.CycleRecoverable.Context
 import lambdas.ResponseAndMessageTypes.{ApiGatewayRequest, ApiGatewayResponse}
 import cats.effect.IO
+
+import scala.collection.JavaConverters
 
 class ApiGatewayHandler extends RequestHandler[ApiGatewayRequest, ApiGatewayResponse] {
 
