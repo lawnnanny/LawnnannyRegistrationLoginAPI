@@ -11,6 +11,11 @@
 sbt assembly
 ```
 
+## Test
+```
+sbt test
+```
+
 ## Dependencies
 
 ### AWScala https://github.com/seratch/AWScala

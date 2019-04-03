@@ -1,0 +1,859 @@
+{
+    "version" : "1.1.0-M2",
+    "project" : {
+        "name" : "terraapi-test",
+        "directory" : "/home/shane/code/TerraApi",
+        "sources" : [
+            "/home/shane/code/TerraApi/src/test/scala-2.12",
+            "/home/shane/code/TerraApi/src/test/scala",
+            "/home/shane/code/TerraApi/src/test/java",
+            "/home/shane/code/TerraApi/target/scala-2.12/src_managed/test"
+        ],
+        "dependencies" : [
+            "terraapi"
+        ],
+        "classpath" : [
+            "/home/shane/code/TerraApi/.bloop/terraapi/scala-2.12/classes",
+            "/home/shane/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/aws-lambda-java-events/jars/aws-lambda-java-events-2.2.5.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/aws-lambda-java-core/jars/aws-lambda-java-core-1.2.0.jar",
+            "/home/shane/.ivy2/cache/com.github.seratch/awscala-dynamodb_2.12/jars/awscala-dynamodb_2.12-0.8.1.jar",
+            "/home/shane/.ivy2/cache/com.github.seratch/awscala-core_2.12/jars/awscala-core_2.12-0.8.1.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-core/jars/aws-java-sdk-core-1.11.445.jar",
+            "/home/shane/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.1.3.jar",
+            "/home/shane/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.5.jar",
+            "/home/shane/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.9.jar",
+            "/home/shane/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.10.jar",
+            "/home/shane/.ivy2/cache/software.amazon.ion/ion-java/bundles/ion-java-1.0.2.jar",
+            "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/bundles/jackson-databind-2.6.7.1.jar",
+            "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/bundles/jackson-annotations-2.6.0.jar",
+            "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/bundles/jackson-core-2.6.7.jar",
+            "/home/shane/.ivy2/cache/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/bundles/jackson-dataformat-cbor-2.6.7.jar",
+            "/home/shane/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.10.1.jar",
+            "/home/shane/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-2.1.2.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-dynamodb/jars/aws-java-sdk-dynamodb-1.11.445.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-s3/jars/aws-java-sdk-s3-1.11.445.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-kms/jars/aws-java-sdk-kms-1.11.445.jar",
+            "/home/shane/.ivy2/cache/com.amazonaws/jmespath-java/jars/jmespath-java-1.11.445.jar",
+            "/home/shane/.ivy2/cache/io.github.mkotsur/aws-lambda-scala_2.12/jars/aws-lambda-scala_2.12-0.1.1.jar",
+            "/home/shane/.ivy2/cache/io.circe/circe-core_2.12/jars/circe-core_2.12-0.10.0.jar",
+            "/home/shane/.ivy2/cache/io.circe/circe-numbers_2.12/jars/circe-numbers_2.12-0.10.0.jar",
+            "/home/shane/.ivy2/cache/org.typelevel/cats-core_2.12/jars/cats-core_2.12-1.4.0.jar",
+            "/home/shane/.ivy2/cache/org.typelevel/cats-macros_2.12/jars/cats-macros_2.12-1.4.0.jar",
+            "/home/shane/.ivy2/cache/org.typelevel/machinist_2.12/jars/machinist_2.12-0.6.5.jar",
+            "/home/shane/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar",
+            "/home/shane/.ivy2/cache/org.typelevel/cats-kernel_2.12/jars/cats-kernel_2.12-1.4.0.jar",
+            "/home/shane/.ivy2/cache/io.circe/circe-generic_2.12/jars/circe-generic_2.12-0.10.0.jar",
+            "/home/shane/.ivy2/cache/com.chuusai/shapeless_2.12/bundles/shapeless_2.12-2.3.3.jar",
+            "/home/shane/.ivy2/cache/org.typelevel/macro-compat_2.12/jars/macro-compat_2.12-1.1.1.jar",
+            "/home/shane/.ivy2/cache/io.circe/circe-parser_2.12/jars/circe-parser_2.12-0.10.0.jar",
+            "/home/shane/.ivy2/cache/io.circe/circe-jawn_2.12/jars/circe-jawn_2.12-0.10.0.jar",
+            "/home/shane/.ivy2/cache/org.spire-math/jawn-parser_2.12/jars/jawn-parser_2.12-0.13.0.jar",
+            "/home/shane/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.25.jar",
+            "/home/shane/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar",
+            "/home/shane/.ivy2/cache/org.typelevel/cats-effect_2.12/jars/cats-effect_2.12-1.0.0.jar",
+            "/home/shane/.ivy2/cache/org.scalacheck/scalacheck_2.12/jars/scalacheck_2.12-1.14.0.jar",
+            "/home/shane/.ivy2/cache/org.scala-sbt/test-interface/jars/test-interface-1.0.jar",
+            "/home/shane/.ivy2/cache/org.scalamock/scalamock_2.12/jars/scalamock_2.12-4.1.0.jar",
+            "/home/shane/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.4.jar",
+            "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.5.jar",
+            "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.4.jar"
+        ],
+        "out" : "/home/shane/code/TerraApi/.bloop/terraapi",
+        "classesDir" : "/home/shane/code/TerraApi/.bloop/terraapi/scala-2.12/test-classes",
+        "resources" : [
+            "/home/shane/code/TerraApi/src/test/resources",
+            "/home/shane/code/TerraApi/target/scala-2.12/resource_managed/test"
+        ],
+        "scala" : {
+            "organization" : "org.scala-lang",
+            "name" : "scala-compiler",
+            "version" : "2.12.8",
+            "options" : [
+                "-unchecked",
+                "-deprecation",
+                "-feature",
+                "-Xfatal-warnings",
+                "-P:semanticdb:failures:warning",
+                "-P:semanticdb:sourceroot:/home/shane/code/TerraApi",
+                "-Yrangepos",
+                "-Xplugin-require:semanticdb",
+                "-Xplugin:/home/shane/.ivy2/cache/org.scalameta/semanticdb-scalac_2.12.8/jars/semanticdb-scalac_2.12.8-4.1.0.jar"
+            ],
+            "jars" : [
+                "/home/shane/.ivy2/cache/org.scala-lang/scala-compiler/jars/scala-compiler-2.12.8.jar",
+                "/home/shane/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar",
+                "/home/shane/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar",
+                "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.6.jar",
+                "/home/shane/.ivy2/cache/jline/jline/jars/jline-2.14.6.jar"
+            ],
+            "setup" : {
+                "order" : "mixed",
+                "addLibraryToBootClasspath" : true,
+                "addCompilerToClasspath" : false,
+                "addExtraJarsToClasspath" : false,
+                "manageBootClasspath" : true,
+                "filterLibraryFromClasspath" : true
+            }
+        },
+        "java" : {
+            "options" : [
+            ]
+        },
+        "test" : {
+            "frameworks" : [
+                {
+                    "names" : [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names" : [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                }
+            ],
+            "options" : {
+                "excludes" : [
+                ],
+                "arguments" : [
+                ]
+            }
+        },
+        "platform" : {
+            "name" : "jvm",
+            "config" : {
+                "home" : "/usr/lib/jvm/java-8-oracle/jre",
+                "options" : [
+                ]
+            },
+            "mainClass" : [
+            ]
+        },
+        "resolution" : {
+            "modules" : [
+                {
+                    "organization" : "org.scala-lang",
+                    "name" : "scala-library",
+                    "version" : "2.12.8",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-library",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang/scala-library/jars/scala-library-2.12.8.jar"
+                        },
+                        {
+                            "name" : "scala-library",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.12.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "aws-lambda-java-events",
+                    "version" : "2.2.5",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-lambda-java-events",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-lambda-java-events/jars/aws-lambda-java-events-2.2.5.jar"
+                        },
+                        {
+                            "name" : "aws-lambda-java-events",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-lambda-java-events/srcs/aws-lambda-java-events-2.2.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "aws-lambda-java-core",
+                    "version" : "1.2.0",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-lambda-java-core",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-lambda-java-core/jars/aws-lambda-java-core-1.2.0.jar"
+                        },
+                        {
+                            "name" : "aws-lambda-java-core",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-lambda-java-core/srcs/aws-lambda-java-core-1.2.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.github.seratch",
+                    "name" : "awscala-dynamodb_2.12",
+                    "version" : "0.8.1",
+                    "artifacts" : [
+                        {
+                            "name" : "awscala-dynamodb_2.12",
+                            "path" : "/home/shane/.ivy2/cache/com.github.seratch/awscala-dynamodb_2.12/jars/awscala-dynamodb_2.12-0.8.1.jar"
+                        },
+                        {
+                            "name" : "awscala-dynamodb_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.github.seratch/awscala-dynamodb_2.12/srcs/awscala-dynamodb_2.12-0.8.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.github.seratch",
+                    "name" : "awscala-core_2.12",
+                    "version" : "0.8.1",
+                    "artifacts" : [
+                        {
+                            "name" : "awscala-core_2.12",
+                            "path" : "/home/shane/.ivy2/cache/com.github.seratch/awscala-core_2.12/jars/awscala-core_2.12-0.8.1.jar"
+                        },
+                        {
+                            "name" : "awscala-core_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.github.seratch/awscala-core_2.12/srcs/awscala-core_2.12-0.8.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "aws-java-sdk-core",
+                    "version" : "1.11.445",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-java-sdk-core",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-core/jars/aws-java-sdk-core-1.11.445.jar"
+                        },
+                        {
+                            "name" : "aws-java-sdk-core",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-core/srcs/aws-java-sdk-core-1.11.445-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-logging",
+                    "name" : "commons-logging",
+                    "version" : "1.1.3",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-logging",
+                            "path" : "/home/shane/.ivy2/cache/commons-logging/commons-logging/jars/commons-logging-1.1.3.jar"
+                        },
+                        {
+                            "name" : "commons-logging",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/commons-logging/commons-logging/srcs/commons-logging-1.1.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.httpcomponents",
+                    "name" : "httpclient",
+                    "version" : "4.5.5",
+                    "artifacts" : [
+                        {
+                            "name" : "httpclient",
+                            "path" : "/home/shane/.ivy2/cache/org.apache.httpcomponents/httpclient/jars/httpclient-4.5.5.jar"
+                        },
+                        {
+                            "name" : "httpclient",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.apache.httpcomponents/httpclient/srcs/httpclient-4.5.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.apache.httpcomponents",
+                    "name" : "httpcore",
+                    "version" : "4.4.9",
+                    "artifacts" : [
+                        {
+                            "name" : "httpcore",
+                            "path" : "/home/shane/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.4.9.jar"
+                        },
+                        {
+                            "name" : "httpcore",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.apache.httpcomponents/httpcore/srcs/httpcore-4.4.9-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "commons-codec",
+                    "name" : "commons-codec",
+                    "version" : "1.10",
+                    "artifacts" : [
+                        {
+                            "name" : "commons-codec",
+                            "path" : "/home/shane/.ivy2/cache/commons-codec/commons-codec/jars/commons-codec-1.10.jar"
+                        },
+                        {
+                            "name" : "commons-codec",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/commons-codec/commons-codec/srcs/commons-codec-1.10-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "software.amazon.ion",
+                    "name" : "ion-java",
+                    "version" : "1.0.2",
+                    "artifacts" : [
+                        {
+                            "name" : "ion-java",
+                            "path" : "/home/shane/.ivy2/cache/software.amazon.ion/ion-java/bundles/ion-java-1.0.2.jar"
+                        },
+                        {
+                            "name" : "ion-java",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/software.amazon.ion/ion-java/srcs/ion-java-1.0.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.fasterxml.jackson.core",
+                    "name" : "jackson-databind",
+                    "version" : "2.6.7.1",
+                    "artifacts" : [
+                        {
+                            "name" : "jackson-databind",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/bundles/jackson-databind-2.6.7.1.jar"
+                        },
+                        {
+                            "name" : "jackson-databind",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-databind/srcs/jackson-databind-2.6.7.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.fasterxml.jackson.core",
+                    "name" : "jackson-annotations",
+                    "version" : "2.6.0",
+                    "artifacts" : [
+                        {
+                            "name" : "jackson-annotations",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/bundles/jackson-annotations-2.6.0.jar"
+                        },
+                        {
+                            "name" : "jackson-annotations",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-annotations/srcs/jackson-annotations-2.6.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.fasterxml.jackson.core",
+                    "name" : "jackson-core",
+                    "version" : "2.6.7",
+                    "artifacts" : [
+                        {
+                            "name" : "jackson-core",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/bundles/jackson-core-2.6.7.jar"
+                        },
+                        {
+                            "name" : "jackson-core",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.core/jackson-core/srcs/jackson-core-2.6.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.fasterxml.jackson.dataformat",
+                    "name" : "jackson-dataformat-cbor",
+                    "version" : "2.6.7",
+                    "artifacts" : [
+                        {
+                            "name" : "jackson-dataformat-cbor",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/bundles/jackson-dataformat-cbor-2.6.7.jar"
+                        },
+                        {
+                            "name" : "jackson-dataformat-cbor",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.fasterxml.jackson.dataformat/jackson-dataformat-cbor/srcs/jackson-dataformat-cbor-2.6.7-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "joda-time",
+                    "name" : "joda-time",
+                    "version" : "2.10.1",
+                    "artifacts" : [
+                        {
+                            "name" : "joda-time",
+                            "path" : "/home/shane/.ivy2/cache/joda-time/joda-time/jars/joda-time-2.10.1.jar"
+                        },
+                        {
+                            "name" : "joda-time",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/joda-time/joda-time/srcs/joda-time-2.10.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.joda",
+                    "name" : "joda-convert",
+                    "version" : "2.1.2",
+                    "artifacts" : [
+                        {
+                            "name" : "joda-convert",
+                            "path" : "/home/shane/.ivy2/cache/org.joda/joda-convert/jars/joda-convert-2.1.2.jar"
+                        },
+                        {
+                            "name" : "joda-convert",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.joda/joda-convert/srcs/joda-convert-2.1.2-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "aws-java-sdk-dynamodb",
+                    "version" : "1.11.445",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-java-sdk-dynamodb",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-dynamodb/jars/aws-java-sdk-dynamodb-1.11.445.jar"
+                        },
+                        {
+                            "name" : "aws-java-sdk-dynamodb",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-dynamodb/srcs/aws-java-sdk-dynamodb-1.11.445-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "aws-java-sdk-s3",
+                    "version" : "1.11.445",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-java-sdk-s3",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-s3/jars/aws-java-sdk-s3-1.11.445.jar"
+                        },
+                        {
+                            "name" : "aws-java-sdk-s3",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-s3/srcs/aws-java-sdk-s3-1.11.445-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "aws-java-sdk-kms",
+                    "version" : "1.11.445",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-java-sdk-kms",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-kms/jars/aws-java-sdk-kms-1.11.445.jar"
+                        },
+                        {
+                            "name" : "aws-java-sdk-kms",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/aws-java-sdk-kms/srcs/aws-java-sdk-kms-1.11.445-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.amazonaws",
+                    "name" : "jmespath-java",
+                    "version" : "1.11.445",
+                    "artifacts" : [
+                        {
+                            "name" : "jmespath-java",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/jmespath-java/jars/jmespath-java-1.11.445.jar"
+                        },
+                        {
+                            "name" : "jmespath-java",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.amazonaws/jmespath-java/srcs/jmespath-java-1.11.445-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "io.github.mkotsur",
+                    "name" : "aws-lambda-scala_2.12",
+                    "version" : "0.1.1",
+                    "artifacts" : [
+                        {
+                            "name" : "aws-lambda-scala_2.12",
+                            "path" : "/home/shane/.ivy2/cache/io.github.mkotsur/aws-lambda-scala_2.12/jars/aws-lambda-scala_2.12-0.1.1.jar"
+                        },
+                        {
+                            "name" : "aws-lambda-scala_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/io.github.mkotsur/aws-lambda-scala_2.12/srcs/aws-lambda-scala_2.12-0.1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "io.circe",
+                    "name" : "circe-core_2.12",
+                    "version" : "0.10.0",
+                    "artifacts" : [
+                        {
+                            "name" : "circe-core_2.12",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-core_2.12/jars/circe-core_2.12-0.10.0.jar"
+                        },
+                        {
+                            "name" : "circe-core_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-core_2.12/srcs/circe-core_2.12-0.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "io.circe",
+                    "name" : "circe-numbers_2.12",
+                    "version" : "0.10.0",
+                    "artifacts" : [
+                        {
+                            "name" : "circe-numbers_2.12",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-numbers_2.12/jars/circe-numbers_2.12-0.10.0.jar"
+                        },
+                        {
+                            "name" : "circe-numbers_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-numbers_2.12/srcs/circe-numbers_2.12-0.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.typelevel",
+                    "name" : "cats-core_2.12",
+                    "version" : "1.4.0",
+                    "artifacts" : [
+                        {
+                            "name" : "cats-core_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-core_2.12/jars/cats-core_2.12-1.4.0.jar"
+                        },
+                        {
+                            "name" : "cats-core_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-core_2.12/srcs/cats-core_2.12-1.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.typelevel",
+                    "name" : "cats-macros_2.12",
+                    "version" : "1.4.0",
+                    "artifacts" : [
+                        {
+                            "name" : "cats-macros_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-macros_2.12/jars/cats-macros_2.12-1.4.0.jar"
+                        },
+                        {
+                            "name" : "cats-macros_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-macros_2.12/srcs/cats-macros_2.12-1.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.typelevel",
+                    "name" : "machinist_2.12",
+                    "version" : "0.6.5",
+                    "artifacts" : [
+                        {
+                            "name" : "machinist_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/machinist_2.12/jars/machinist_2.12-0.6.5.jar"
+                        },
+                        {
+                            "name" : "machinist_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/machinist_2.12/srcs/machinist_2.12-0.6.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scala-lang",
+                    "name" : "scala-reflect",
+                    "version" : "2.12.8",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-reflect",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang/scala-reflect/jars/scala-reflect-2.12.8.jar"
+                        },
+                        {
+                            "name" : "scala-reflect",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang/scala-reflect/srcs/scala-reflect-2.12.8-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.typelevel",
+                    "name" : "cats-kernel_2.12",
+                    "version" : "1.4.0",
+                    "artifacts" : [
+                        {
+                            "name" : "cats-kernel_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-kernel_2.12/jars/cats-kernel_2.12-1.4.0.jar"
+                        },
+                        {
+                            "name" : "cats-kernel_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-kernel_2.12/srcs/cats-kernel_2.12-1.4.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "io.circe",
+                    "name" : "circe-generic_2.12",
+                    "version" : "0.10.0",
+                    "artifacts" : [
+                        {
+                            "name" : "circe-generic_2.12",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-generic_2.12/jars/circe-generic_2.12-0.10.0.jar"
+                        },
+                        {
+                            "name" : "circe-generic_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-generic_2.12/srcs/circe-generic_2.12-0.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "com.chuusai",
+                    "name" : "shapeless_2.12",
+                    "version" : "2.3.3",
+                    "artifacts" : [
+                        {
+                            "name" : "shapeless_2.12",
+                            "path" : "/home/shane/.ivy2/cache/com.chuusai/shapeless_2.12/bundles/shapeless_2.12-2.3.3.jar"
+                        },
+                        {
+                            "name" : "shapeless_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/com.chuusai/shapeless_2.12/srcs/shapeless_2.12-2.3.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.typelevel",
+                    "name" : "macro-compat_2.12",
+                    "version" : "1.1.1",
+                    "artifacts" : [
+                        {
+                            "name" : "macro-compat_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/macro-compat_2.12/jars/macro-compat_2.12-1.1.1.jar"
+                        },
+                        {
+                            "name" : "macro-compat_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/macro-compat_2.12/srcs/macro-compat_2.12-1.1.1-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "io.circe",
+                    "name" : "circe-parser_2.12",
+                    "version" : "0.10.0",
+                    "artifacts" : [
+                        {
+                            "name" : "circe-parser_2.12",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-parser_2.12/jars/circe-parser_2.12-0.10.0.jar"
+                        },
+                        {
+                            "name" : "circe-parser_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-parser_2.12/srcs/circe-parser_2.12-0.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "io.circe",
+                    "name" : "circe-jawn_2.12",
+                    "version" : "0.10.0",
+                    "artifacts" : [
+                        {
+                            "name" : "circe-jawn_2.12",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-jawn_2.12/jars/circe-jawn_2.12-0.10.0.jar"
+                        },
+                        {
+                            "name" : "circe-jawn_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/io.circe/circe-jawn_2.12/srcs/circe-jawn_2.12-0.10.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.spire-math",
+                    "name" : "jawn-parser_2.12",
+                    "version" : "0.13.0",
+                    "artifacts" : [
+                        {
+                            "name" : "jawn-parser_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.spire-math/jawn-parser_2.12/jars/jawn-parser_2.12-0.13.0.jar"
+                        },
+                        {
+                            "name" : "jawn-parser_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.spire-math/jawn-parser_2.12/srcs/jawn-parser_2.12-0.13.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.slf4j",
+                    "name" : "slf4j-api",
+                    "version" : "1.7.25",
+                    "artifacts" : [
+                        {
+                            "name" : "slf4j-api",
+                            "path" : "/home/shane/.ivy2/cache/org.slf4j/slf4j-api/jars/slf4j-api-1.7.25.jar"
+                        },
+                        {
+                            "name" : "slf4j-api",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.slf4j/slf4j-api/srcs/slf4j-api-1.7.25-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scalactic",
+                    "name" : "scalactic_2.12",
+                    "version" : "3.0.5",
+                    "artifacts" : [
+                        {
+                            "name" : "scalactic_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.scalactic/scalactic_2.12/bundles/scalactic_2.12-3.0.5.jar"
+                        },
+                        {
+                            "name" : "scalactic_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scalactic/scalactic_2.12/srcs/scalactic_2.12-3.0.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.typelevel",
+                    "name" : "cats-effect_2.12",
+                    "version" : "1.0.0",
+                    "artifacts" : [
+                        {
+                            "name" : "cats-effect_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-effect_2.12/jars/cats-effect_2.12-1.0.0.jar"
+                        },
+                        {
+                            "name" : "cats-effect_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.typelevel/cats-effect_2.12/srcs/cats-effect_2.12-1.0.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scalacheck",
+                    "name" : "scalacheck_2.12",
+                    "version" : "1.14.0",
+                    "artifacts" : [
+                        {
+                            "name" : "scalacheck_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.scalacheck/scalacheck_2.12/jars/scalacheck_2.12-1.14.0.jar"
+                        },
+                        {
+                            "name" : "scalacheck_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scalacheck/scalacheck_2.12/srcs/scalacheck_2.12-1.14.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scala-sbt",
+                    "name" : "test-interface",
+                    "version" : "1.0",
+                    "artifacts" : [
+                        {
+                            "name" : "test-interface",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-sbt/test-interface/jars/test-interface-1.0.jar"
+                        },
+                        {
+                            "name" : "test-interface",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-sbt/test-interface/srcs/test-interface-1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scalamock",
+                    "name" : "scalamock_2.12",
+                    "version" : "4.1.0",
+                    "artifacts" : [
+                        {
+                            "name" : "scalamock_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.scalamock/scalamock_2.12/jars/scalamock_2.12-4.1.0.jar"
+                        },
+                        {
+                            "name" : "scalamock_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scalamock/scalamock_2.12/srcs/scalamock_2.12-4.1.0-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scalatest",
+                    "name" : "scalatest_2.12",
+                    "version" : "3.0.4",
+                    "artifacts" : [
+                        {
+                            "name" : "scalatest_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.scalatest/scalatest_2.12/bundles/scalatest_2.12-3.0.4.jar"
+                        },
+                        {
+                            "name" : "scalatest_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scalatest/scalatest_2.12/srcs/scalatest_2.12-3.0.4-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scala-lang.modules",
+                    "name" : "scala-xml_2.12",
+                    "version" : "1.0.5",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-xml_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/bundles/scala-xml_2.12-1.0.5.jar"
+                        },
+                        {
+                            "name" : "scala-xml_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-xml_2.12/srcs/scala-xml_2.12-1.0.5-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization" : "org.scala-lang.modules",
+                    "name" : "scala-parser-combinators_2.12",
+                    "version" : "1.0.4",
+                    "artifacts" : [
+                        {
+                            "name" : "scala-parser-combinators_2.12",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/bundles/scala-parser-combinators_2.12-1.0.4.jar"
+                        },
+                        {
+                            "name" : "scala-parser-combinators_2.12",
+                            "classifier" : "sources",
+                            "path" : "/home/shane/.ivy2/cache/org.scala-lang.modules/scala-parser-combinators_2.12/srcs/scala-parser-combinators_2.12-1.0.4-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

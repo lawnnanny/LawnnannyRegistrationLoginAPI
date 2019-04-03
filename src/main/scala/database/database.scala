@@ -1,28 +1,18 @@
 package lambdas.database
 
 import awscala._, dynamodbv2._
-import scala.util.{Try,Success,Failure}
+import cats.syntax.apply._
 
-abstract class DataBaseProxy
+abstract class DatabaseProxy
 
-object DynamoDb extends DataBaseProxy
+abstract class AccessKeys
 
-case class DynamoDB(implicit awsKeys: AccessKeys, awsRegion: String ) extends DataBaseProxy {
+sealed case class AwsAccessKeys(val accessKey: String, val secretAccessKey: String, val region: Region) extends AccessKeys
 
-  val MatchStringAWSREgionToRegionObject = (regionString: String) => {
-    try {
-      val regionLowerCaps = regionString.toLowerCase()
-      regionString match {
-        case "us-east-1" => Region.US_EAST_1
-        case _ => throw new RuntimeException("No Valid Region")
-      }
-    }
-  } : Region
-
-  implicit val region = MatchStringAWSREgionToRegionObject(awsRegion)
-  implicit val dynamoDB = DynamoDB(awsKeys accessKey, awsKeys secretAccessKey)
+object AwsDynamoProxy {
+    def apply(accessKeys: AwsAccessKeys) = new AwsDynamoProxy(accessKeys)
 }
 
-class AccessKeys(val accessKey: String, val secretAccessKey: String)
-
-
+sealed case class AwsDynamoProxy(accessKeys: AwsAccessKeys ) extends DatabaseProxy {
+    private val awsDynamoDB = DynamoDB(accessKeys.accessKey, accessKeys.secretAccessKey)(accessKeys.region)
+}
