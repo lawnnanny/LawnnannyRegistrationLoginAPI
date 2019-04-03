@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75211781-d885-45dc-b8ab-4f8e2c7feea4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_modules_scala_xml_2_12_1_0_6_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/sbt__org_scalatest_scalatest_2_12_3_0_5_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/hello.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/hello.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/terraapi-build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/terraapi-build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bloop/terraapi/scala-2.12/classes/META-INF/semanticdb/src/main/scala/database/database.scala.semanticdb" beforeDir="false" afterPath="$PROJECT_DIR$/.bloop/terraapi/scala-2.12/classes/META-INF/semanticdb/src/main/scala/database/database.scala.semanticdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bloop/terraapi/scala-2.12/test-classes/META-INF/semanticdb/src/test/scala/database/Database.spec.scala.semanticdb" beforeDir="false" afterPath="$PROJECT_DIR$/.bloop/terraapi/scala-2.12/test-classes/META-INF/semanticdb/src/test/scala/database/Database.spec.scala.semanticdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bloop/terraapi/scala-2.12/test-classes/META-INF/semanticdb/src/test/scala/registration/Handler.spec.scala.semanticdb" beforeDir="false" afterPath="$PROJECT_DIR$/.bloop/terraapi/scala-2.12/test-classes/META-INF/semanticdb/src/test/scala/registration/Handler.spec.scala.semanticdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bloop/terraapi/terraapi-analysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.bloop/terraapi/terraapi-analysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.bloop/terraapi/terraapi-test-analysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.bloop/terraapi/terraapi-test-analysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metals/metals.h2.db" beforeDir="false" afterPath="$PROJECT_DIR$/.metals/metals.h2.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.metals/metals.lock.db" beforeDir="false" afterPath="$PROJECT_DIR$/.metals/metals.lock.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/database/database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/database/database.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/registration/Handler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/registration/Handler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/scala/registration/HandlerTest.scala" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/scala/registration/UnitTest.scala" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/database/Database.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/database/Database.spec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/registration/Handler.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/registration/Handler.spec.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -42,13 +41,13 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JAVA" value="1" />
-          <entry key="Scala" value="36" />
+          <entry key="Scala" value="44" />
           <entry key="sbt" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Scala" value="4118" />
+          <entry key="Scala" value="5404" />
           <entry key="sbt" value="13" />
           <entry key="sbtShell" value="9" />
         </counts>
@@ -60,20 +59,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/hello/Handler.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="165">
               <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
               <folding>
                 <element signature="e#23#93#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/scala/database/Database.spec.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -87,11 +77,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/Models/User/User.spec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+            <state relative-caret-position="195">
+              <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
               <folding>
                 <element signature="e#30#68#0" expanded="true" />
               </folding>
@@ -102,11 +92,50 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/database/database.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="118" selection-start-line="9" selection-start-column="118" selection-end-line="9" selection-end-column="118" />
+            <state relative-caret-position="345">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
               <folding>
-                <element signature="e#26#74#0" expanded="true" />
+                <element signature="e#26#42#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/database/Database.spec.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="e#26#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalamock/scalamock_2.12/srcs/scalamock_2.12-4.1.0-sources.jar!/org/scalamock/function/StubFunction.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="661">
+              <caret line="67" column="6" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalamock/scalamock_2.12/srcs/scalamock_2.12-4.1.0-sources.jar!/org/scalamock/function/MockFunction.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="645">
+              <caret line="65" column="13" selection-start-line="65" selection-start-column="6" selection-end-line="65" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/.ivy2/cache/com.github.seratch/awscala-dynamodb_2.12/srcs/awscala-dynamodb_2.12-0.8.1-sources.jar!/awscala/dynamodbv2/Table.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1575">
+              <caret line="138" column="59" selection-start-line="138" selection-start-column="45" selection-end-line="138" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -130,6 +159,9 @@
       <find>val</find>
       <find>region</find>
       <find>dynamoDbPro</find>
+      <find>putat</find>
+      <find>expects</find>
+      <find>putAttributes</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -145,17 +177,16 @@
         <option value="$PROJECT_DIR$/src/main/scala/hello/Handler.scala" />
         <option value="$PROJECT_DIR$/build.sbt" />
         <option value="$PROJECT_DIR$/src/main/scala/database/package.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/database/Database.spec.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/database/database.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/Models/User/User.spec.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/database/database.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/database/Database.spec.scala" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="144" />
-    <option name="y" value="567" />
-    <option name="width" value="1913" />
-    <option name="height" value="2132" />
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="-1" />
+    <option name="width" value="1921" />
+    <option name="height" value="2135" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -198,7 +229,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="scala" type="462c0819:PsiDirectoryNode" />
-              <item name="User" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hello" type="b2602c69:ProjectViewProjectNode" />
@@ -212,6 +243,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="scala" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TerraApi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="hello" type="b2602c69:ProjectViewProjectNode" />
@@ -228,7 +267,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554185068755" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554262865444" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -366,10 +405,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="144" y="567" width="1913" height="2132" extended-state="0" />
+    <frame x="-1" y="0" width="1921" height="2135" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3163539" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.31500268" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -525,26 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/hello/Handler.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
-          <folding>
-            <element signature="e#23#93#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/database/database.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="118" selection-start-line="9" selection-start-column="118" selection-end-line="9" selection-end-column="118" />
-          <folding>
-            <element signature="e#26#74#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/database/package.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -552,10 +571,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/database/Database.spec.scala">
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalatest/scalatest_2.12/srcs/scalatest_2.12-3.0.4-sources.jar!/org/scalatest/Matchers.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        <state relative-caret-position="653">
+          <caret line="1794" column="6" selection-start-line="1794" selection-start-column="6" selection-end-line="1794" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/hello/Handler.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="86" selection-start-line="11" selection-start-column="86" selection-end-line="11" selection-end-column="86" />
+          <folding>
+            <element signature="e#23#93#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -568,10 +597,51 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/Models/User/User.spec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="9" lean-forward="true" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        <state relative-caret-position="195">
+          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
           <folding>
             <element signature="e#30#68#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/com.github.seratch/awscala-dynamodb_2.12/srcs/awscala-dynamodb_2.12-0.8.1-sources.jar!/awscala/dynamodbv2/Table.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="138" column="59" selection-start-line="138" selection-start-column="45" selection-end-line="138" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/database/database.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+          <folding>
+            <element signature="e#26#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalamock/scalamock_2.12/srcs/scalamock_2.12-4.1.0-sources.jar!/org/scalamock/function/MockFunction.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="65" column="13" selection-start-line="65" selection-start-column="6" selection-end-line="65" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scalamock/scalamock_2.12/srcs/scalamock_2.12-4.1.0-sources.jar!/org/scalamock/function/StubFunction.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="67" column="6" selection-start-line="67" selection-start-column="6" selection-end-line="67" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/database/Database.spec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#26#48#0" expanded="true" />
           </folding>
         </state>
       </provider>

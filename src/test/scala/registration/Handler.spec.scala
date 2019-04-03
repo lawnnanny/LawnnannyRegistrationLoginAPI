@@ -11,7 +11,7 @@ import org.scalamock.scalatest.MockFactory
 class DatabaseTest extends FunSpec with Matchers with MockFactory {
     describe("Registration Handler") {
         it("handleRegistration Given A ApiGatewayRequest Should Return An IO[String]") {
-            assert(true)
+
         }
     }
 }
