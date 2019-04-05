@@ -22,6 +22,7 @@ libraryDependencies += "org.typelevel" %% "cats-effect" % "1.0.0" withSources() 
 libraryDependencies += "org.scalamock" %% "scalamock" % "4.1.0" % Test
 libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.4" % Test
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.14.0"
+libraryDependencies += "io.spray" %%  "spray-json" % "1.3.5"
 
 scalacOptions ++= Seq(
   "-unchecked",
