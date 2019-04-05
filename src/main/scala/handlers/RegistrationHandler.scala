@@ -11,7 +11,7 @@ import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
 import lambdas.database._
 import scala.io.Source
 import lambdas.config._
-import lambdas.config.GlobalConfigs._
+import lambdas.config.GlobalConfigs.AWSConfig
 import scala.collection.JavaConverters
 
 class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
