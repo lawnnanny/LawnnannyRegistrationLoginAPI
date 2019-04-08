@@ -6,6 +6,7 @@ import dynamodbv2._
 import cats.syntax.apply._
 import lambdas.config.AWSConfig
 import spray.json.DefaultJsonProtocol
+import lambdas.config.GlobalConfigs.AWSConfig
 
 abstract class DatabaseProxy
 
@@ -29,14 +30,14 @@ object AwsDynamoProxy {
 
 case class AwsDynamoProxy(accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy {
 
-    def getTable(dynamo: DynamoDB, table: String) : Table = {
-        dynamo.table(tableName).get
-    }
+  def getTable(dynamo: DynamoDB, table: String) : Table = {
+      dynamo.table(tableName).get
+  }
 
-    def put(primaryKey: String, attributes : Seq[(String, Any)]): IO[Unit] = {
-        implicit val region = accessKeys.getRegion
-        implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
-        val dynamoTable: Table = getTable(awsDynamoDB, tableName)
-        IO(dynamoTable.putAttributes(primaryKey, attributes))
-    }
+  def put(primaryKey: String, attributes : Seq[(String, Any)]): IO[Unit] = {
+      implicit val region = accessKeys.getRegion
+      implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
+      val dynamoTable: Table = getTable(awsDynamoDB, tableName)
+      IO(dynamoTable.putAttributes(primaryKey, attributes))
+  }
 }

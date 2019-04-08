@@ -10,13 +10,13 @@ import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
 import io.circe._, io.circe.generic.auto._, io.circe.parser._, io.circe.syntax._
 import lambdas.database._
 import scala.io.Source
-import lambdas.config._
-import lambdas.config.GlobalConfigs.AWSConfig
 import scala.collection.JavaConverters
 import cats.effect._
 import cats.effect.syntax.all._
 import cats.implicits._
 import scala.util.Either
+import lambdas.database.AwsDynamoProxyFactory
+import lambdas.config.GlobalConfigs.AWSConfig
 
 class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
 
@@ -30,8 +30,11 @@ class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiG
   }
 
   def handleUserNameRegistration(request: UserNameRegistrationRequest): IO[MessageAndStatus] = {
-      val awsCredentials: AWSConfig = implicitly[AWSConfig]
-      val proxy = AwsDynamoProxy(new AwsAccessKeys(awsCredentials), "UserTable")
-      IO(new MessageAndStatus(true, "response"))
+      val proxyFactory = implicitly[AwsDynamoProxyFactory]
+      val awsProxy = proxyFactory("UserTable")
+      IO {
+        awsProxy.put(request.username, List(("Password", request.password)).toSeq)
+        new MessageAndStatus(true, "response")
+      }
   }
 }
