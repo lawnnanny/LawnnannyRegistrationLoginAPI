@@ -7,17 +7,11 @@ import org.scalamock.scalatest.MockFactory
 
 class DatabaseTest extends FunSpec with Matchers with MockFactory {
     describe("User") {
-        it("User Should Be Implicit") {
+        it("Users apply function should return User type") {
             val correctTestUserName = Gen.alphaNumChar.toString
             val correctTestPassword = Gen.alphaNumChar.toString
-            val correctUser = new User((correctTestUserName, correctTestPassword))
-            def compareUsers(implicit user: User) {
-                val testUser = user.userTuple._1
-                val testHashPassword = user.userTuple._2
-                val testString : String = testUser + testHashPassword
-                val correctString : String = correctTestUserName + correctTestPassword
-                assert(testString.equals(correctString))
-            }
+            val userName :User = Users(correctTestUserName, correctTestPassword)
+            assert(userName.isInstanceOf[User])
         }
     }
 }

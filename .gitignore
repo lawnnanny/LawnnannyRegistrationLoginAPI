@@ -15,3 +15,5 @@ project/plugins/project/
 # Serverless directories
 .serverless
 *.config
+.bloop
+.metals
