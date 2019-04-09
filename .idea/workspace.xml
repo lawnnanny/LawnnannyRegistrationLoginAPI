@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="75211781-d885-45dc-b8ab-4f8e2c7feea4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/scala/database/database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/database/database.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/hello.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/hello.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
@@ -26,9 +29,9 @@
           <entry key="project.closed" value="1" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="5" />
+          <entry key="project.open.time.6" value="6" />
           <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -36,7 +39,7 @@
           <entry key="JAVA" value="1" />
           <entry key="JSON" value="1" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Scala" value="80" />
+          <entry key="Scala" value="82" />
           <entry key="sbt" value="6" />
         </counts>
       </usages-collector>
@@ -44,7 +47,7 @@
         <counts>
           <entry key="JSON" value="14" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Scala" value="8375" />
+          <entry key="Scala" value="8402" />
           <entry key="sbt" value="13" />
           <entry key="sbtShell" value="9" />
         </counts>
@@ -53,11 +56,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+            <state relative-caret-position="450">
+              <caret line="30" column="98" selection-start-line="30" selection-start-column="98" selection-end-line="30" selection-end-column="98" />
               <folding>
                 <element signature="e#26#48#0" expanded="true" />
               </folding>
@@ -68,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="150">
+              <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
               <folding>
                 <element signature="e#26#66#0" expanded="true" />
               </folding>
@@ -80,11 +83,32 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+            <state relative-caret-position="540">
+              <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
               <folding>
                 <element signature="e#26#96#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1365">
+              <caret line="91" column="55" lean-forward="true" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
+              <folding>
+                <element signature="e#26#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/ResponseAndMessageTypes/ApiGatewayResponse.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -113,7 +137,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/config/GlobalConfigs.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
+            <state relative-caret-position="75">
               <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
               <folding>
                 <element signature="e#24#79#0" expanded="true" />
@@ -174,18 +198,19 @@
         <option value="$PROJECT_DIR$/src/main/scala/config/GlobalConfigs.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/config/GlobalConfig.spec.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/Models/User/User.spec.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/database/database.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="-1" />
-    <option name="width" value="1921" />
-    <option name="height" value="2135" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="1092" />
+    <option name="y" value="315" />
+    <option name="width" value="1913" />
+    <option name="height" value="2132" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -195,7 +220,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -249,6 +274,14 @@
               <item name="hello" type="b2602c69:ProjectViewProjectNode" />
               <item name="TerraApi" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="scala" type="462c0819:PsiDirectoryNode" />
+              <item name="ResponseAndMessageTypes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TerraApi" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -278,7 +311,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -420,10 +453,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1921" height="2135" extended-state="4" />
+    <frame x="1092" y="315" width="1913" height="2132" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29578218" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30026808" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -603,9 +636,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
-          <folding>
-            <element signature="e#23#93#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -613,9 +643,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="7" column="55" selection-start-line="7" selection-start-column="55" selection-end-line="7" selection-end-column="55" />
-          <folding>
-            <element signature="e#24#46#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -623,13 +650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/ResponseAndMessageTypes/ApiGatewayResponse.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>
@@ -651,18 +671,49 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="795">
           <caret line="53" column="57" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/config/AwsConfig.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/config/GlobalConfigs.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+          <folding>
+            <element signature="e#24#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="98" selection-start-line="30" selection-start-column="98" selection-end-line="30" selection-end-column="98" />
           <folding>
             <element signature="e#26#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/ResponseAndMessageTypes/ApiGatewayResponse.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="13" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="53" />
+        <state relative-caret-position="60">
+          <caret line="4" column="40" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="6" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
           <folding>
-            <element signature="e#26#48#0" expanded="true" />
+            <element signature="e#26#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -677,47 +728,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/config/GlobalConfigs.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding>
-            <element signature="e#24#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/config/AwsConfig.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+        <state relative-caret-position="540">
+          <caret line="36" column="10" lean-forward="true" selection-start-line="36" selection-start-column="10" selection-end-line="36" selection-end-column="10" />
           <folding>
             <element signature="e#26#96#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala">
+    <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#26#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="47" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+        <state relative-caret-position="1365">
+          <caret line="91" column="55" lean-forward="true" selection-start-line="91" selection-start-column="55" selection-end-line="91" selection-end-column="55" />
           <folding>
             <element signature="e#26#48#0" expanded="true" />
           </folding>

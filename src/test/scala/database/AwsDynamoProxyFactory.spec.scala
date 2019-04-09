@@ -24,13 +24,11 @@ class AwsDynamoProxyFactoryTest extends FunSpec with Matchers with MockFactory {
         val secreteAccessKey = Gen.alphaNumChar.toString
         val testRegion = Gen.alphaNumChar.toString
         val testUserTable = Gen.alphaNumChar.toString
-        
+
         val awsConfig: AWSConfig = new AWSConfig(accessKey, secreteAccessKey, testRegion)
         val testFactory = implicitly[AwsDynamoProxyFactory]
         val returnedAwsDynamoProxy = testFactory(testUserTable)(awsConfig)
         val correctAwsDynamoProxy = new AwsDynamoProxy(new AwsAccessKeys(awsConfig), testUserTable)
-        println(returnedAwsDynamoProxy.toString)
-        println(correctAwsDynamoProxy.toString)
         assert(returnedAwsDynamoProxy.equals(correctAwsDynamoProxy))
       }
   }

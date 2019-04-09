@@ -18,9 +18,9 @@ import scala.util.Either
 import lambdas.database.AwsDynamoProxyFactory
 import lambdas.config.GlobalConfigs.AWSConfig
 
-class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
+case class MessageAndStatus(val success: Boolean, val message: String)
 
-  case class MessageAndStatus(val success: Boolean, val message: String)
+class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
 
   def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse = {
       val headers = Map("x-custom-response-header" -> "my custom response header value")
@@ -29,8 +29,8 @@ class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiG
       ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
   }
 
-  def handleUserNameRegistration(request: UserNameRegistrationRequest): IO[MessageAndStatus] = {
-      val proxyFactory = implicitly[AwsDynamoProxyFactory]
+  def handleUserNameRegistration(request: UserNameRegistrationRequest)(implicit proxyFactory: AwsDynamoProxyFactory): IO[MessageAndStatus] = {
+
       val awsProxy = proxyFactory("UserTable")
       IO {
         awsProxy.put(request.username, List(("Password", request.password)).toSeq)
