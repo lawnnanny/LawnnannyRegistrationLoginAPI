@@ -1,14 +1,19 @@
 package lambdas.database
 
 import awscala._
-import cats.effect.IO
+import cats.Monad
+import cats.effect.{Async, IO, Sync}
 import dynamodbv2._
 import cats.syntax.apply._
 import lambdas.config.AWSConfig
 import spray.json.DefaultJsonProtocol
 import lambdas.config.GlobalConfigs.AWSConfig
 
-abstract class DatabaseProxy
+import scala.language.higherKinds
+
+trait DatabaseProxy[F[_]] {
+    def put(primaryKey: String, values: Seq[(String, Any)]): F[Unit]
+}
 
 abstract class AccessKeys
 
@@ -28,16 +33,17 @@ object AwsDynamoProxy {
     def apply(accessKeys: AwsAccessKeys, tableName: String) = new AwsDynamoProxy(accessKeys, tableName)
 }
 
-case class AwsDynamoProxy(accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy {
 
-  def getTable(dynamo: DynamoDB, table: String) : Table = {
+case class AwsDynamoProxy[F[_]: Sync](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F] {
+
+  private def getTable(dynamo: DynamoDB, table: String) : Table = {
       dynamo.table(tableName).get
   }
 
-  def put(primaryKey: String, attributes : Seq[(String, Any)]): IO[Unit] = {
+  override def put(primaryKey: String, attributes : Seq[(String, Any)]) = {
       implicit val region = accessKeys.getRegion
       implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
       val dynamoTable: Table = getTable(awsDynamoDB, tableName)
-      IO(dynamoTable.putAttributes(primaryKey, attributes))
+      Sync[F].delay(dynamoTable.put(primaryKey, attributes))
   }
 }

@@ -5,6 +5,7 @@ import org.scalatest._
 import com.amazonaws.services.lambda.runtime._
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import awscala._
+import cats.Monad
 import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
 import cats.effect.IO
 import dynamodbv2._
@@ -12,6 +13,7 @@ import org.scalacheck._
 import lambdas.database._
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import lambdas.config._
+
 import scala.collection.JavaConverters
 import com.amazonaws.auth.AWSCredentials
 import lambdas.handlers._
@@ -67,7 +69,6 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
               val testRegion = Gen.alphaNumChar.toString
               val testUserName = Gen.alphaNumChar.toString
               val testPassword = Gen.alphaNumChar.toString
-
               val awsConfig = new AWSConfig("testAccessKey", "testSecretAccessKey", "testRegion")
               val testUserNameRegistrationRequest = new UserNameRegistrationRequest(testUserName, testPassword)
 
