@@ -8,7 +8,6 @@ import cats.syntax.apply._
 import lambdas.config.AWSConfig
 import spray.json.DefaultJsonProtocol
 import lambdas.config.GlobalConfigs.AWSConfig
-
 import scala.language.higherKinds
 
 trait DatabaseProxy[F[_]] {
@@ -29,14 +28,9 @@ sealed case class AwsAccessKeys(private val config: AWSConfig ) extends AccessKe
     }
 }
 
-object AwsDynamoProxy {
-    def apply(accessKeys: AwsAccessKeys, tableName: String) = new AwsDynamoProxy(accessKeys, tableName)
-}
-
-
 case class AwsDynamoProxy[F[_]: Sync](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F] {
 
-  private def getTable(dynamo: DynamoDB, table: String) : Table = {
+  def getTable(dynamo: DynamoDB, table: String) : Table = {
       dynamo.table(tableName).get
   }
 

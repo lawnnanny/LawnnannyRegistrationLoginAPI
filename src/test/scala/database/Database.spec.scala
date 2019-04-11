@@ -25,12 +25,8 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
       }
 
       describe("DynamoDBProxy") {
-          it("AwsDynamoProxy apply companion object should return an instance of AwsDynamoProxy") {
-            assert(ops.AwsDynamoProxy.equals(AwsDynamoProxy(ops.accessKeys, ops.fakeTableName)))
-          }
-
           it("AwsDynamoProxy put given a primaryKey and a sequence of attributes should return an IO") {
-            val dynamoTableStub = stub[Table]
+
             val dynamoStub = stub[DynamoDB]
 
             val accessKey = Gen.alphaNumChar.toString
@@ -42,25 +38,24 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
             val testSequence : Seq[(String, Any)] = (1 to 10).map((n: Int) => (Gen.alphaNumChar.toString, Gen.alphaNumChar.toString))
             val testPrimaryKey: String = Gen.alphaNumChar.toString
 
-            (dynamoTableStub.putAttributes (_: Any, _:Seq[(String, Any)])(_: DynamoDB))
-                .when(testPrimaryKey, testSequence, dynamoStub)
+            class tableAdapter extends Table("adf", "asdf")  {
+                def put(primaryKey: String,seq: Seq[(String, Any)])(implicit dynamo: DynamoDB) = Unit
+                def qual(age: Int) = Unit
+            }
+            val testTableAdapter = stub[tableAdapter]
+            (testTableAdapter.put ( _:String, _:Seq[(String, Any)] )(_: DynamoDB))
+                .when(testPrimaryKey,testSequence,dynamoStub)
                 .returning(Unit)
 
-            (dynamoStub.table (_: String)).when(testTableName).returning(Some(dynamoTableStub))
-
-            val testAwsDynamoProxy = new AwsDynamoProxy(testAccessKeys, testTableName) {
-                override def getTable(dynamo: DynamoDB, table: String) = dynamoTableStub
+            (dynamoStub.table (_: String))
+                .when(testTableName).returning(Some(testTableAdapter))
+            class testAwsDynamoProxy extends AwsDynamoProxy[IO](testAccessKeys, testTableName) {
+                override def getTable(dynamo: DynamoDB, table: String): Table = testTableAdapter
             }
-            assert(testAwsDynamoProxy.put(testPrimaryKey, testSequence).isInstanceOf[IO[Unit]])
+
+            val subClassTestAwsDynamoProxy = new testAwsDynamoProxy
+            assert(subClassTestAwsDynamoProxy.put(testPrimaryKey, testSequence).isInstanceOf[IO[Unit]])
           }
       }
-  }
-
-  object ops {
-    val testAccessString = Gen.alphaNumChar.toString
-    val testSecretKey = Gen.alphaNumChar.toString
-    val fakeTableName = Gen.alphaNumChar.toString
-    val accessKeys: AwsAccessKeys = new AwsAccessKeys(new AWSConfig(testAccessString, testSecretKey, "US-EAST-1"))
-    val AwsDynamoProxy: AwsDynamoProxy = new AwsDynamoProxy(accessKeys, fakeTableName)
   }
 }

@@ -24,6 +24,7 @@ import cats.implicits._
 import scala.util.Either
 import lambdas.database.AwsDynamoProxyFactory
 import lambdas.config.GlobalConfigs.AWSConfig
+import scala.language.higherKinds
 
 case class MessageAndStatus(val success: Boolean, val message: String)
 
@@ -36,15 +37,10 @@ class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiG
       ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
   }
 
-  def handleUserNameRegistration[F[_]: Monad](request: UserNameRegistrationRequest)(implicit proxyFactory: AwsDynamoProxyFactory): F[MessageAndStatus] = {
-
+  def handleUserNameRegistration[F[_]: Monad](request: UserNameRegistrationRequest)(implicit proxyFactory: AwsDynamoProxyFactory[F]): F[MessageAndStatus] = {
       val awsProxy = proxyFactory("UserTable")
       for {
         _ <- awsProxy.put(request.username, List(("Password", request.password)).toSeq)
-      } yield()
-
-
-      new MessageAndStatus(true, "response")
-
+      } yield(new MessageAndStatus(true, "response"))
   }
 }

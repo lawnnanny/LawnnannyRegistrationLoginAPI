@@ -1,15 +1,16 @@
 package lambdas.database
 
+import scala.language.higherKinds
 import com.amazonaws.auth.AWSCredentials
+import cats.effect.{Async, IO, Sync}
 import lambdas.config._
 
-
 object AwsDynamoProxyFactory {
-    implicit val proxyFactory = new AwsDynamoProxyFactory
+    implicit val IOProxyFactory = new AwsDynamoProxyFactory[IO]
 }
 
-class AwsDynamoProxyFactory {
-    def apply(tableName: String)(implicit awsCredentials: AWSConfig) : AwsDynamoProxy = {
-        AwsDynamoProxy(new AwsAccessKeys(awsCredentials), tableName)
+class AwsDynamoProxyFactory[F[_]: Sync] {
+    def apply(tableName: String)(implicit awsCredentials: AWSConfig) : AwsDynamoProxy[F] = {
+        AwsDynamoProxy[F](new AwsAccessKeys(awsCredentials), tableName)
     }
 }

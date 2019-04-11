@@ -5,7 +5,7 @@ import org.scalacheck._
 import org.scalatest._
 import org.scalamock.scalatest.MockFactory
 
-class DatabaseTest extends FunSpec with Matchers with MockFactory {
+class UserTest extends FunSpec with Matchers with MockFactory {
     describe("User") {
         it("Users apply function should return User type") {
             val correctTestUserName = Gen.alphaNumChar.toString
