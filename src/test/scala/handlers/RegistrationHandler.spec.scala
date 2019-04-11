@@ -20,7 +20,7 @@ import lambdas.handlers._
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
 
-  describe("Registration Handler") {
+  describe("ApiGatewayHandler") {
       describe("handleRequest") {
           it("Should return a ApiGatewayResponse given a UserNameRegistrationRequest and a Context") {
               assert(true)
