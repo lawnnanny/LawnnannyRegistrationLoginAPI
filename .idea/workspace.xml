@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75211781-d885-45dc-b8ab-4f8e2c7feea4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/scala_compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.sbt" beforeDir="false" afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/database/database.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/database/database.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/database/Database.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/database/Database.spec.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" afterDir="false" />
-    </list>
+    <list default="true" id="75211781-d885-45dc-b8ab-4f8e2c7feea4" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
     <ignored path="$PROJECT_DIR$/project/target/" />
@@ -75,8 +65,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+            <state relative-caret-position="432">
+              <caret line="56" column="46" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="46" />
               <folding>
                 <element signature="e#26#48#0" expanded="true" />
               </folding>
@@ -167,10 +157,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="4">
-    <option name="x" value="-1" />
+  <component name="ProjectFrameBounds" extendedState="5">
+    <option name="x" value="3840" />
+    <option name="y" value="720" />
     <option name="width" value="1921" />
-    <option name="height" value="2135" />
+    <option name="height" value="1440" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -275,7 +266,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555185188657" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555185192396" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -468,7 +459,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1921" height="2135" extended-state="4" />
+    <frame x="3840" y="720" width="1921" height="1440" extended-state="5" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33368927" />
@@ -770,6 +761,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding>
+            <element signature="e#26#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -834,8 +828,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="59" column="49" selection-start-line="59" selection-start-column="49" selection-end-line="59" selection-end-column="49" />
+        <state relative-caret-position="432">
+          <caret line="56" column="46" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="46" />
           <folding>
             <element signature="e#26#48#0" expanded="true" />
           </folding>

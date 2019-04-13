@@ -35,7 +35,7 @@ class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiG
       ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
   }
 
-  def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: AwsDynamoProxy[F, UserTable]): F[MessageAndStatus] = {
+  def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
       for {
           querried <- awsProxy.get(request.username)
           _ <- if(querried.isEmpty) awsProxy.put(request.username, List(("Password", request.password))) else None.pure[F]

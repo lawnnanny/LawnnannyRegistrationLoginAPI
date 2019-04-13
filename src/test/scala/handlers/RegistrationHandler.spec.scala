@@ -53,8 +53,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
 
               val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
               val state = Ref.of[IO, List[String]](List.empty[String])
-              val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
-              implicit val castTestDynamoProxy = testDynamoProxy.asInstanceOf[AwsDynamoProxy[IO, UserTable]]
+              implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
               val spec = for {
                   _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
                   st <- state.unsafeRunSync().get
@@ -74,8 +73,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
 
               val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
               val state = Ref.of[IO, List[String]](List.empty[String])
-              val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
-              implicit val castTestDynamoProxy = testDynamoProxy.asInstanceOf[AwsDynamoProxy[IO, UserTable]]
+              implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
               val spec = for {
                   _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
                   st <- state.unsafeRunSync().get
@@ -86,15 +84,15 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
       }
 
       describe("getMessageAndStatus") {
-          it("Should Return A Successful MessageAndStatus Given A Option") {
+          it("Should Return A Un-Successful MessageAndStatus Given A Option") {
               val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(Some(Unit))
               val correctMessageAndStatus = new MessageAndStatus(false, "Account Already Exists")
               assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
           }
 
-          it("Should Return A Un-Successful MessageAndStatus Given A Option") {
+          it("Should Return A Successful MessageAndStatus Given A Option") {
               val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(None)
-              val correctMessageAndStatus = new MessageAndStatus(true, "Account Already Exists")
+              val correctMessageAndStatus = new MessageAndStatus(true, "Account Was Created")
               assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
           }
       }
