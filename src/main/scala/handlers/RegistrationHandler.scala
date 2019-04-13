@@ -25,6 +25,7 @@ import scala.util.Either
 import lambdas.database.AwsDynamoProxyFactory
 import lambdas.config.GlobalConfigs.AWSConfig
 import scala.language.higherKinds
+import awscala.dynamodbv2._
 
 case class MessageAndStatus(val success: Boolean, val message: String)
 
@@ -40,7 +41,17 @@ class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiG
   def handleUserNameRegistration[F[_]: Monad](request: UserNameRegistrationRequest)(implicit proxyFactory: AwsDynamoProxyFactory[F]): F[MessageAndStatus] = {
       val awsProxy = proxyFactory("UserTable")
       for {
-        _ <- awsProxy.put(request.username, List(("Password", request.password)).toSeq)
-      } yield(new MessageAndStatus(true, "response"))
+          querried <- awsProxy.get(request.username)
+          _ <- if(querried.isEmpty) awsProxy.put(request.username, List(("username", request.password))) else None.pure[F]
+      } yield(getMessageAndStatus(querried))
   }
+
+  def getMessageAndStatus(querried: Option[_]): MessageAndStatus = {
+    if (querried.isEmpty) {
+      new MessageAndStatus(true, "Account Was Created")
+    } else {
+      new MessageAndStatus(false, "Account Already Exists")
+    }
+  }
+
 }

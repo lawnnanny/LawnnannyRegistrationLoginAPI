@@ -31,22 +31,20 @@ sealed case class AwsAccessKeys(private val config: AWSConfig ) extends AccessKe
 
 case class AwsDynamoProxy[F[_]: Sync](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F] {
 
-  def getTable(dynamo: DynamoDB, table: String) : Table = dynamo.table(tableName).get
+      def getTable(dynamo: DynamoDB, table: String) : Table = dynamo.table(tableName).get
 
-  override def put(primaryKey: String, values : Seq[(String, Any)]) = {
-      implicit val region = accessKeys.getRegion
-      implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
-      val dynamoTable: Table = getTable(awsDynamoDB, tableName)
-      Sync[F].delay(dynamoTable.put(primaryKey, values))
-  }
+      override def put(primaryKey: String, values : Seq[(String, Any)]) :F[Unit] = {
+          implicit val region = accessKeys.getRegion
+          implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
+          val dynamoTable: Table = getTable(awsDynamoDB, tableName)
+          Sync[F].delay(dynamoTable.put(primaryKey, values))
+      }
 
-  override def get(primaryKey: String) = {
-      implicit val region = accessKeys.getRegion
-      implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
-      val dynamoTable: Table = getTable(awsDynamoDB, tableName)
-      println("10")
-      val getValue = dynamoTable.get(primaryKey)
-      println(dynamoTable)
-      Sync[F].delay(getValue)
-  }
+      override def get(primaryKey: String):F[Option[_]] = {
+          implicit val region = accessKeys.getRegion
+          implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
+          val dynamoTable: Table = getTable(awsDynamoDB, tableName)
+          val getValue = dynamoTable.get(primaryKey)
+          Sync[F].delay(getValue)
+      }
 }

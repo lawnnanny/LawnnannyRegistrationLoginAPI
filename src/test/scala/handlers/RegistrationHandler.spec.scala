@@ -13,12 +13,13 @@ import org.scalacheck._
 import lambdas.database._
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import lambdas.config._
-
 import scala.collection.JavaConverters
 import com.amazonaws.auth.AWSCredentials
 import lambdas.handlers._
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
+
+    val testApiGatewayHandler = new ApiGatewayHandler
 
   describe("ApiGatewayHandler") {
       describe("handleRequest") {
@@ -30,6 +31,20 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
       describe("handleUserNameRegistration") {
           it("Should return an IO[MessageAndStatus] given a UserNameRegistrationRequest") {
               assert(true)
+          }
+      }
+
+      describe("getMessageAndStatus") {
+          it("Should Return A Successful MessageAndStatus Given A Option") {
+              val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(Some(Unit))
+              val correctMessageAndStatus = new MessageAndStatus(false, "Account Already Exists")
+              assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
+          }
+
+          it("Should Return A Un-Successful MessageAndStatus Given A Option") {
+              val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(None)
+              val correctMessageAndStatus = new MessageAndStatus(true, "Account Already Exists")
+              assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
           }
       }
   }
