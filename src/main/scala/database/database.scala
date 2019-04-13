@@ -10,7 +10,7 @@ import spray.json.DefaultJsonProtocol
 import lambdas.config.GlobalConfigs.AWSConfig
 import scala.language.higherKinds
 
-trait DatabaseProxy[F[_]] {
+trait DatabaseProxy[F[_], T <: DynamoTable] {
     def put(primaryKey: String, values: Seq[(String, Any)]): F[Unit]
     def get(primaryKey: String): F[Option[_]]
 }
@@ -29,7 +29,7 @@ sealed case class AwsAccessKeys(private val config: AWSConfig ) extends AccessKe
     }
 }
 
-case class AwsDynamoProxy[F[_]: Sync](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F] {
+case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F, T] {
 
       def getTable(dynamo: DynamoDB, table: String) : Table = dynamo.table(tableName).get
 

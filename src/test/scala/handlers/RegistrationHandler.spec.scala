@@ -1,25 +1,37 @@
 package lambdas.handlers
 
+import java.io.Console
+
 import org.scalatest._
 import org.scalatest._
 import com.amazonaws.services.lambda.runtime._
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import awscala._
-import cats.Monad
+import cats.implicits._
+import cats.{Applicative, Monad}
 import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
 import cats.effect.IO
+import cats.effect.concurrent.Ref
 import dynamodbv2._
 import org.scalacheck._
-import lambdas.database._
+import lambdas.database.AwsDynamoProxyFactory
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
-import lambdas.config._
+import lambdas.config.AWSConfig
+import cats.effect._
+
 import scala.collection.JavaConverters
 import com.amazonaws.auth.AWSCredentials
+import cats.implicits
 import lambdas.handlers._
+import cats.effect.{Async, IO, Sync}
+import io.circe.Decoder.state
+import lambdas.database._
+
+import scala.language.higherKinds
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
-
-    val testApiGatewayHandler = new ApiGatewayHandler
+    class TestApiGatewayHandler extends ApiGatewayHandler
+    val testApiGatewayHandler = new TestApiGatewayHandler
 
   describe("ApiGatewayHandler") {
       describe("handleRequest") {
@@ -29,8 +41,47 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
       }
 
       describe("handleUserNameRegistration") {
-          it("Should return an IO[MessageAndStatus] given a UserNameRegistrationRequest") {
-              assert(true)
+          it("Should Make A Get Request With The User Name And Not A Put Request") {
+              class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
+                  def put(primaryKey: String, values: Seq[(String, Any)]): F[Unit] = state.update(_ :+ primaryKey)
+                  def get(primaryKey: String): F[Option[_]] = {
+                      state.update(_ :+ primaryKey)
+                      None.pure[F]
+                  }
+              }
+              val testApiGatewayHandler = new ApiGatewayHandler
+
+              val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
+              val state = Ref.of[IO, List[String]](List.empty[String])
+              val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
+              implicit val castTestDynamoProxy = testDynamoProxy.asInstanceOf[AwsDynamoProxy[IO, UserTable]]
+              val spec = for {
+                  _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
+                  st <- state.unsafeRunSync().get
+                  as <- IO { assert(st == List("username")) }
+              } yield as
+              spec.unsafeToFuture()
+          }
+          it("Should Make A Get Request With The User Name And A Put Request") {
+              class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
+                  def put(primaryKey: String, values: Seq[(String, Any)]): F[Unit] = state.update(_ :+ primaryKey)
+                  def get(primaryKey: String): F[Option[_]] = {
+                      state.update(_ :+ primaryKey)
+                      Some("querried").pure[F]
+                  }
+              }
+              val testApiGatewayHandler = new ApiGatewayHandler
+
+              val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
+              val state = Ref.of[IO, List[String]](List.empty[String])
+              val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
+              implicit val castTestDynamoProxy = testDynamoProxy.asInstanceOf[AwsDynamoProxy[IO, UserTable]]
+              val spec = for {
+                  _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
+                  st <- state.unsafeRunSync().get
+                  as <- IO { assert(st == List("username", "username")) }
+              } yield as
+              spec.unsafeToFuture()
           }
       }
 

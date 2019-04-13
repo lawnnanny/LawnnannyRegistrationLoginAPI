@@ -54,7 +54,7 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
                 (dynamoStub.table (_: String))
                     .when(testTableName).returning(Some(testTableAdapter))
 
-                class testAwsDynamoProxy extends AwsDynamoProxy[IO](testAccessKeys, testTableName) {
+                class testAwsDynamoProxy extends AwsDynamoProxy[IO, UserTable](testAccessKeys, testTableName) {
                     override def getTable(dynamo: DynamoDB, table: String): Table = testTableAdapter
                 }
 
@@ -75,8 +75,6 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
                   val testAwsConfig = new AWSConfig(accessKey, secreteAccessKey, testRegion)
                   val testAccessKeys = new AwsAccessKeys(testAwsConfig)
                   val testSequence : Seq[(String, Any)] = (1 to 10).map((n: Int) => (Gen.alphaNumChar.toString, Gen.alphaNumChar.toString))
-
-
 
                   val testAtributes = new java.util.Map[String, aws.model.AttributeValue] {
                     override def size(): Int = 0
@@ -117,7 +115,7 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
                     .when(testTableName)
                     .returning(Some(testTableAdapter))
 
-                  class testAwsDynamoProxy extends AwsDynamoProxy[IO](testAccessKeys, testTableName) {
+                  class testAwsDynamoProxy extends AwsDynamoProxy[IO, UserTable](testAccessKeys, testTableName) {
                       override def getTable(dynamo: DynamoDB, table: String): Table = {
                           testTableAdapter
                       }
