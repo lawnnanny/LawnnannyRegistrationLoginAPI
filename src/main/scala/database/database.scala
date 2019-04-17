@@ -11,7 +11,7 @@ import lambdas.config.GlobalConfigs.AWSConfig
 import scala.language.higherKinds
 
 trait DatabaseProxy[F[_], T <: DynamoTable] {
-    def put(primaryKey: String, values: Seq[(String, Any)]): F[Unit]
+    def put(primaryKey: String, values: (String, Any)*): F[Unit]
     def get(primaryKey: String): F[Option[_]]
 }
 
@@ -33,7 +33,7 @@ case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKey
 
       def getTable(dynamo: DynamoDB, table: String) : Table = dynamo.table(tableName).get
 
-      override def put(primaryKey: String, values : Seq[(String, Any)]) :F[Unit] = {
+      override def put(primaryKey: String, values : (String, Any)* ) :F[Unit] = {
           implicit val region = accessKeys.getRegion
           implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
           val dynamoTable: Table = getTable(awsDynamoDB, tableName)

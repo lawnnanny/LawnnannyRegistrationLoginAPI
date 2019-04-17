@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75211781-d885-45dc-b8ab-4f8e2c7feea4" name="Default Changelist" comment="" />
+    <list default="true" id="75211781-d885-45dc-b8ab-4f8e2c7feea4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/project/project/target/" />
     <ignored path="$PROJECT_DIR$/project/target/" />
@@ -20,12 +23,12 @@
     <session id="1770278796">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.5" value="2" />
-          <entry key="project.open.time.6" value="9" />
+          <entry key="project.open.time.6" value="11" />
           <entry key="project.open.time.7" value="2" />
-          <entry key="project.opened" value="14" />
+          <entry key="project.opened" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -41,7 +44,7 @@
         <counts>
           <entry key="JSON" value="14" />
           <entry key="PLAIN_TEXT" value="5" />
-          <entry key="Scala" value="10445" />
+          <entry key="Scala" value="10495" />
           <entry key="sbt" value="13" />
           <entry key="sbtShell" value="9" />
         </counts>
@@ -50,11 +53,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="615">
+              <caret line="41" column="99" selection-start-line="41" selection-start-column="67" selection-end-line="41" selection-end-column="103" />
               <folding>
                 <element signature="e#26#43#0" expanded="true" />
               </folding>
@@ -62,11 +65,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="56" column="46" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="46" />
+            <state relative-caret-position="600">
+              <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
               <folding>
                 <element signature="e#26#48#0" expanded="true" />
               </folding>
@@ -152,16 +155,15 @@
         <option value="$PROJECT_DIR$/src/main/scala/database/database.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/database/AwsDynamoProxyFactory.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/database/AwsDynamoProxyFactory.spec.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" />
         <option value="$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="5">
-    <option name="x" value="3840" />
-    <option name="y" value="720" />
+    <option name="x" value="-1" />
     <option name="width" value="1921" />
-    <option name="height" value="1440" />
+    <option name="height" value="2135" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -171,6 +173,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,16 +261,25 @@
               <item name="scala" type="462c0819:PsiDirectoryNode" />
               <item name="handlers" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="hello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TerraApi" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="hello" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TerraApi" type="462c0819:PsiDirectoryNode" />
+              <item name="target" type="462c0819:PsiDirectoryNode" />
+              <item name="scala-2.12" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555185192396" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1555457953099" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -286,7 +299,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="ScalaTest.DatabaseTest.Database Tests AwsDynamoProxy get should return a value given a primaryKey">
+  <component name="RunManager" selected="JAR Application.hello.jar">
+    <configuration name="hello.jar" type="JarApplication" factoryName="JAR Application" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/target/scala-2.12/hello.jar" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
       <module name="terraapi_8473" />
       <option name="VM_PARAMETERS" />
@@ -372,9 +389,11 @@
     <list>
       <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
       <item itemvalue="ScalaTest.DatabaseTest.Database Tests AwsDynamoProxy get should return a value given a primaryKey" />
+      <item itemvalue="JAR Application.hello.jar" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.hello.jar" />
         <item itemvalue="ScalaTest.DatabaseTest.Database Tests AwsDynamoProxy get should return a value given a primaryKey" />
         <item itemvalue="ScalaTest.ScalaTests in 'scala'" />
       </list>
@@ -459,10 +478,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="3840" y="720" width="1921" height="1440" extended-state="5" />
+    <frame x="-1" y="0" width="1921" height="2135" extended-state="4" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33368927" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.0" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -471,7 +490,7 @@
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32968673" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32977912" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39969605" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -761,9 +780,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="1" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
-          <folding>
-            <element signature="e#26#48#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -809,16 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#26#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.typelevel/cats-core_2.12/srcs/cats-core_2.12-1.4.0-sources.jar!/cats/syntax/applicative.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -828,10 +834,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/scala/handlers/RegistrationHandler.spec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="56" column="46" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="46" />
+        <state relative-caret-position="600">
+          <caret line="40" column="7" selection-start-line="40" selection-start-column="7" selection-end-line="40" selection-end-column="7" />
           <folding>
             <element signature="e#26#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/handlers/RegistrationHandler.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="102" selection-start-line="37" selection-start-column="94" selection-end-line="37" selection-end-column="102" />
+          <folding>
+            <element signature="e#26#43#0" expanded="true" />
           </folding>
         </state>
       </provider>

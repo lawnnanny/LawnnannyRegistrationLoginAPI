@@ -39,16 +39,15 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
                 val testTableName = Gen.alphaNumChar.toString
                 val testAwsConfig = new AWSConfig(accessKey, secreteAccessKey, testRegion)
                 val testAccessKeys = new AwsAccessKeys(testAwsConfig)
-                val testSequence : Seq[(String, Any)] = (1 to 10).map((n: Int) => (Gen.alphaNumChar.toString, Gen.alphaNumChar.toString))
                 val testPrimaryKey: String = Gen.alphaNumChar.toString
 
                 class tableAdapter extends Table("adf", "asdf")  {
-                    def put(primaryKey: String,seq: Seq[(String, Any)])(implicit dynamo: DynamoDB) = Unit
+                    def put(primaryKey: String,seq: (String, Any) )(implicit dynamo: DynamoDB) = Unit
                 }
                 val testTableAdapter = stub[tableAdapter]
 
-                (testTableAdapter.put ( _:String, _:Seq[(String, Any)] )(_: DynamoDB))
-                    .when(testPrimaryKey,testSequence,dynamoStub)
+                (testTableAdapter.put ( _:String, _: (String, Any) )(_: DynamoDB))
+                    .when(testPrimaryKey,"testkey" -> "testValue" ,dynamoStub)
                     .returning(Unit)
 
                 (dynamoStub.table (_: String))
@@ -59,7 +58,7 @@ class DatabaseTest extends FunSpec with Matchers with MockFactory {
                 }
 
                 val subClassTestAwsDynamoProxy = new testAwsDynamoProxy
-                assert(subClassTestAwsDynamoProxy.put(testPrimaryKey, testSequence).isInstanceOf[IO[Unit]])
+                assert(subClassTestAwsDynamoProxy.put(testPrimaryKey, "testkey" -> "testValue").isInstanceOf[IO[Unit]])
               }
           }
           describe("get") {
