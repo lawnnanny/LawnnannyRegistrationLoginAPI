@@ -37,7 +37,7 @@ case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKey
           implicit val region = accessKeys.getRegion
           implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
           val dynamoTable: Table = getTable(awsDynamoDB, tableName)
-          Sync[F].delay(dynamoTable.put(primaryKey, values))
+          Sync[F].delay(dynamoTable.put(primaryKey, values: _*))
       }
 
       override def get(primaryKey: String):F[Option[_]] = {
