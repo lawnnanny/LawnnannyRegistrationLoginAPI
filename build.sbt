@@ -8,7 +8,7 @@ resolvers += Resolver.sonatypeRepo("public")
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
 scalaVersion := "2.12.8"
 releaseNextVersion := { ver => Version(ver).map(_.bumpMinor.string).getOrElse("Error") }
-assemblyJarName in assembly := "hello.jar"
+assemblyJarName in assembly := "lambda.jar"
 
 addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.0")
 
