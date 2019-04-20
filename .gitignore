@@ -17,3 +17,5 @@ project/plugins/project/
 *.config
 .bloop
 .metals
+.idea
+.idea/*
