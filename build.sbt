@@ -2,7 +2,7 @@ import sbt.Keys._
 import sbt._
 import sbtrelease.Version
 
-name := "hello"
+name := "lambda"
 
 resolvers += Resolver.sonatypeRepo("public")
 resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
