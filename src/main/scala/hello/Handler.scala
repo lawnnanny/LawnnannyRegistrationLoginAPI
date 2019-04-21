@@ -1,18 +1,14 @@
-package hello
+package lambdas.hello
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
+
 import scala.collection.JavaConverters
+import lambdas._
+import lambdas.ResponseAndMessageTypes._
 
-class Handler extends RequestHandler[Request, Response] {
+class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
 
-  def handleRequest(input: Request, context: Context): Response = {
-    Response("Go Serverless v1.0! Your function executed successfully!", input)
-  }
-}
-
-class ApiGatewayHandler extends RequestHandler[Request, ApiGatewayResponse] {
-
-  def handleRequest(input: Request, context: Context): ApiGatewayResponse = {
+  def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse = {
     val headers = Map("x-custom-response-header" -> "my custom response header value")
     ApiGatewayResponse(200, "Go Serverless v1.0! Your function executed successfully!",
       JavaConverters.mapAsJavaMap[String, Object](headers),
