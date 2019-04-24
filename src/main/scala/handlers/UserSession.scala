@@ -24,7 +24,7 @@ import lambdas.config.GlobalConfigs.AWSConfig
 import scala.language.higherKinds
 import awscala.dynamodbv2._
 
-class RegistrationApiGatewayHandler extends ApiGatewayHandler {
+class UserSessionApiGatewayHandler extends ApiGatewayHandler {
 
   def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
       for {

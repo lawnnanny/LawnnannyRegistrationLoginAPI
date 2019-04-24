@@ -30,7 +30,7 @@ import lambdas.database._
 import scala.language.higherKinds
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
-    class TestApiGatewayHandler extends ApiGatewayHandler
+    class TestApiGatewayHandler extends RegistrationApiGatewayHandler
     val testApiGatewayHandler = new TestApiGatewayHandler
 
   describe("ApiGatewayHandler") {
@@ -49,7 +49,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
                       None.pure[F]
                   }
               }
-              val testApiGatewayHandler = new ApiGatewayHandler
+              val testApiGatewayHandler = new RegistrationApiGatewayHandler
 
               val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
               val state = Ref.of[IO, List[String]](List.empty[String])
@@ -69,7 +69,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
                       Some("querried").pure[F]
                   }
               }
-              val testApiGatewayHandler = new ApiGatewayHandler
+              val testApiGatewayHandler = new RegistrationApiGatewayHandler
 
               val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
               val state = Ref.of[IO, List[String]](List.empty[String])
