@@ -29,7 +29,7 @@ sealed case class AwsAccessKeys(private val config: AWSConfig ) extends AccessKe
     }
 }
 
-case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F, T] {
+case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKeys, tableName: String) extends DatabaseProxy[F, T] {
 
       def getTable(dynamo: DynamoDB, table: String) : Table = dynamo.table(tableName).get
 

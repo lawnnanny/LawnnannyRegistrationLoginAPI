@@ -26,14 +26,7 @@ import awscala.dynamodbv2._
 
 abstract class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
 
-    def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse = {
-        val headers = Map("x-custom-response-header" -> "my custom response header value")
-        val responseFromDatabase = handleUserNameRegistration[IO](event).unsafeRunSync()
-        val statusCode = if (responseFromDatabase.success) 200 else 600
-        ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
-    }
-
-    def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus]
+    def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse
 }
 
 case class MessageAndStatus(val success: Boolean, val message: String)

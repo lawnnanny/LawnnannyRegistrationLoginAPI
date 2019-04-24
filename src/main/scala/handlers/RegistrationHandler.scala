@@ -26,18 +26,25 @@ import awscala.dynamodbv2._
 
 class RegistrationApiGatewayHandler extends ApiGatewayHandler {
 
-  def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+    def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse = {
+        val headers = Map("x-custom-response-header" -> "my custom response header value")
+        val responseFromDatabase = handleUserNameRegistration[IO](event).unsafeRunSync()
+        val statusCode = if (responseFromDatabase.success) 200 else 600
+        ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
+    }
+
+    def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
       for {
           querried <- awsProxy.get(request.username)
           _ <- if(querried.isEmpty) awsProxy.put(request.username, "Password" -> request.password) else None.pure[F]
       } yield(getMessageAndStatus(querried))
-  }
+    }
 
-  def getMessageAndStatus(querried: Option[_]): MessageAndStatus = {
+    def getMessageAndStatus(querried: Option[_]): MessageAndStatus = {
         if (querried.isEmpty) {
           new MessageAndStatus(true, "Account Was Created")
         } else {
           new MessageAndStatus(false, "Account Already Exists")
         }
-  }
+    }
 }
