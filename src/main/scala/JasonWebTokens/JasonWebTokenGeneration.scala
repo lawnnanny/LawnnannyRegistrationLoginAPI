@@ -7,9 +7,6 @@ import cats.{Applicative, Monad}
 import pdi.jwt.{JwtSprayJson, JwtAlgorithm, JwtClaim}
 import spray.json._
 import lambdas.config.UserSessionConfig
-import cats.free.Free.liftF
-import cats.free.FreeApplicative
-import cats.free.FreeApplicative.lift
 
 case class JsonWebToken(val token: String)
 
