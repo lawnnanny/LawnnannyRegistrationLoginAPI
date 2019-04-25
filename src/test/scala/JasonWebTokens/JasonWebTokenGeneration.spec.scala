@@ -36,7 +36,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
       describe("JasonWebTokenGenerator") {
           it("Should encode a LoginRequest") {
               val correctJwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNoYW5lIn0.RFZANu5IlO18zxcteXYKhrYlF9VRU8tgiN6w1V5steU"
-              val jsonWebTokenGenerator = new JasonWebTokenGenerator[Option]
+              val jsonWebTokenGenerator = new JasonWebTokenGenerator
               val testLoginRequest = new LoginRequest("shane")
               val testUserSessionConfig = new UserSessionConfig(0, "secret")
               val optionWithCorrectJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig)

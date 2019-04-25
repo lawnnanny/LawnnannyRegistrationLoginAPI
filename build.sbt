@@ -33,3 +33,4 @@ scalacOptions ++= Seq(
   "-feature",
   "-Xfatal-warnings"
 )
+libraryDependencies += "com.pauldijou" %% "jwt-core" % "2.1.0"
