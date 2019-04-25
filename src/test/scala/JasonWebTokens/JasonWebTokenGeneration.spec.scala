@@ -11,7 +11,6 @@ import cats.{Applicative, Monad}
 import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
 import cats.effect.IO
 import cats.effect.concurrent.Ref
-import dynamodbv2._
 import org.scalacheck._
 import lambdas.database.AwsDynamoProxyFactory
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
