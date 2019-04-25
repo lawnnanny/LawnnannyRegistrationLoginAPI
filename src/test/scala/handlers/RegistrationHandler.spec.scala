@@ -1,7 +1,6 @@
 package lambdas.handlers
 
 import java.io.Console
-
 import org.scalatest._
 import org.scalatest._
 import com.amazonaws.services.lambda.runtime._
@@ -18,7 +17,6 @@ import lambdas.database.AwsDynamoProxyFactory
 import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import lambdas.config.AWSConfig
 import cats.effect._
-
 import scala.collection.JavaConverters
 import com.amazonaws.auth.AWSCredentials
 import cats.implicits
