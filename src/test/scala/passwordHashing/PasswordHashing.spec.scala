@@ -13,12 +13,12 @@ class PasswordHashingTest extends FunSpec with Matchers with MockFactory {
             val testUserNameRegistration = new UserNameRegistrationRequest("username", "password")
             it("Should return true given a correct hashed password") {
                 import lambdas.PasswordHashing.PasswordHashingObject.PasswordHashing
-                assert(testUserNameRegistration.validatePassword(storedPassword))
+                assert(testUserNameRegistration.validatePassword(storedPassword).get)
             }
             it("Should return false given a correct hashed password") {
                 import lambdas.PasswordHashing.PasswordHashingObject.PasswordHashing
                 val wrongTestUserNameRegistration = new UserNameRegistrationRequest("username", "wrong password")
-                assert(!wrongTestUserNameRegistration.validatePassword(storedPassword))
+                assert(!wrongTestUserNameRegistration.validatePassword(storedPassword).get)
             }
         }
     }
