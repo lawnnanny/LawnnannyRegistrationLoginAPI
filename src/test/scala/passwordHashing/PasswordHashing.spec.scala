@@ -25,8 +25,8 @@ class PasswordHashingTest extends FunSpec with Matchers with MockFactory {
         }
         describe("hashPassword") {
             it("Should return hashed password given a string") {
-                import lambdas.PasswordHashing.PasswordHashingObject.PasswordHashing
-                val hashedPassword = testUserNameRegistration.hashPassword
+                import lambdas.PasswordHashing.PasswordHashingObject._
+                val hashedPassword = PasswordHashingObject.hashPassword(password)
                 assert(password.isBcrypted(hashedPassword))
             }
         }

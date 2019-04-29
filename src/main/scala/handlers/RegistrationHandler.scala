@@ -23,6 +23,7 @@ import lambdas.database.flyweight.ioUserTable
 import lambdas.config.GlobalConfigs.AWSConfig
 import scala.language.higherKinds
 import awscala.dynamodbv2._
+import lambdas.PasswordHashing._
 
 class RegistrationApiGatewayHandler extends ApiGatewayHandler {
 
@@ -36,7 +37,7 @@ class RegistrationApiGatewayHandler extends ApiGatewayHandler {
     def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
       for {
           querried <- awsProxy.get(request.username)
-          _ <- if(querried.isEmpty) awsProxy.put(request.username, "Password" -> request.password) else None.pure[F]
+          _ <- if(querried.isEmpty) awsProxy.put(request.username, "Password" -> PasswordHashingObject.hashPassword(request.password)) else None.pure[F]
       } yield(getMessageAndStatus(querried))
     }
 
