@@ -26,6 +26,7 @@ import io.circe.Decoder.state
 import lambdas.database._
 
 import scala.language.higherKinds
+import com.github.t3hnar.bcrypt._
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
     class TestApiGatewayHandler extends RegistrationApiGatewayHandler
@@ -61,7 +62,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
           }
           it("Should Make A Get Request With The User Name And A Put Request") {
               class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
-                  def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ primaryKey)
+                  def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ values.toList.head._2.asInstanceOf[String])
                   def get(primaryKey: String): F[Option[_]] = {
                       state.update(_ :+ primaryKey)
                       Some("querried").pure[F]
@@ -75,12 +76,15 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
               val spec = for {
                   _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
                   st <- state.unsafeRunSync().get
-                  as <- IO { assert(st == List("username", "username")) }
+                  as <- IO {
+                      assert(st.get(0).get.equals("username"))
+                      assert("password".isBcrypted(st.get(1).get))
+                  }
               } yield as
               spec.unsafeToFuture()
           }
       }
-
+      // as <- IO { assert(st == List("username", "username")) }
       describe("getMessageAndStatus") {
           it("Should Return A Un-Successful MessageAndStatus Given A Option") {
               val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(Some(Unit))
