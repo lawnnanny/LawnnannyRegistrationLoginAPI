@@ -12,7 +12,7 @@ import scala.language.higherKinds
 
 trait DatabaseProxy[F[_], T <: DynamoTable] {
     def put(primaryKey: String, values: (String, Any)*): F[Unit]
-    def get(primaryKey: String): F[Option[_]]
+    def get(primaryKey: String): F[Option[Item]]
 }
 
 abstract class AccessKeys
@@ -40,7 +40,7 @@ case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKey
           Sync[F].delay(dynamoTable.put(primaryKey, values: _*))
       }
 
-      override def get(primaryKey: String):F[Option[_]] = {
+      override def get(primaryKey: String): F[Option[Item]] = {
           implicit val region = accessKeys.getRegion
           implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
           val dynamoTable: Table = getTable(awsDynamoDB, tableName)

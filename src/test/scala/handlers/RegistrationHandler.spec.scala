@@ -43,7 +43,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
           it("Should Make A Get Request With The User Name And Not A Put Request") {
               class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
                   def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ primaryKey)
-                  def get(primaryKey: String): F[Option[_]] = {
+                  def get(primaryKey: String): F[Option[Item]] = {
                       state.update(_ :+ primaryKey)
                       None.pure[F]
                   }
@@ -63,9 +63,9 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
           it("Should Make A Get Request With The User Name And A Put Request") {
               class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
                   def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ values.toList.head._2.asInstanceOf[String])
-                  def get(primaryKey: String): F[Option[_]] = {
+                  def get(primaryKey: String): F[Option[Item]] = {
                       state.update(_ :+ primaryKey)
-                      Some("querried").pure[F]
+                      Some(mock[Item]).pure[F]
                   }
               }
               val testApiGatewayHandler = new RegistrationApiGatewayHandler

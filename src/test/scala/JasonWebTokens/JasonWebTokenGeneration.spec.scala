@@ -27,6 +27,7 @@ import scala.language.higherKinds
 import spray.json._
 import DefaultJsonProtocol._
 import lambdas.config._
+import lambdas.JasonWebTokens.flyWeight._
 
 class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory {
     class TestApiGatewayHandler extends RegistrationApiGatewayHandler
@@ -36,7 +37,7 @@ class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory
       describe("JasonWebTokenGenerator") {
           it("Should encode a LoginRequest") {
               val correctJwtToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InNoYW5lIn0.RFZANu5IlO18zxcteXYKhrYlF9VRU8tgiN6w1V5steU"
-              val jsonWebTokenGenerator = new JasonWebTokenGenerator
+              val jsonWebTokenGenerator = implicitly[JasonWebTokenGenerator]
               val testLoginRequest = new LoginRequest("shane")
               val testUserSessionConfig = new UserSessionConfig(0, "secret")
               val optionWithCorrectJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig)
