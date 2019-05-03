@@ -8,7 +8,7 @@ import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import awscala._
 import cats.implicits._
 import cats.{Applicative, Monad}
-import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import cats.effect.IO
 import cats.effect.concurrent.Ref
 import org.scalacheck._

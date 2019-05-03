@@ -3,7 +3,7 @@ package lambdas.handlers
 import cats.Monad
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
 import cats.effect.IO
-import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import spray.json._
 import scala.collection.JavaConverters._
 import com.amazonaws.services.lambda.runtime.events.{APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent}
@@ -30,14 +30,14 @@ import lambdas.PasswordHashing.PasswordHashingObject._
 
 class UserSessionApiGatewayHandler extends ApiGatewayHandler {
 
-    def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse = {
+    def handleRequest(event: UserNameAndPasswordEvent, context: Context): ApiGatewayResponse = {
         val headers = Map("x-custom-response-header" -> "my custom response header value")
         val responseFromDatabase = handleUserNameSessionRequest[IO](event).unsafeRunSync()
         val statusCode = if (responseFromDatabase.success) 200 else 600
         ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
     }
 
-    def handleUserNameSessionRequest[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+    def handleUserNameSessionRequest[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
         for {
             userExist <- userExists[F](request)
             passwordIsValid <- if(userExist) passwordIsCorrect[F](request) else false.pure[F]
@@ -45,29 +45,29 @@ class UserSessionApiGatewayHandler extends ApiGatewayHandler {
         } yield getMessageAndStatus(jwtToken)
     }
 
-    def getPassword[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[String] = {
+    def getPassword[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[String] = {
         for {
             querried <- awsProxy.get(request.username)
             password <- querried.get.attributes.tail.head.value.s.get.pure[F]
         } yield password
     }
 
-    def getJwtToken[F[_] : Monad](request: UserNameRegistrationRequest)(implicit jasonWebTokenGenerator: JasonWebTokenGenerator): F[Option[String]] = {
+    def getJwtToken[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit jasonWebTokenGenerator: JasonWebTokenGenerator): F[Option[String]] = {
         for {
             jwtToken <- jasonWebTokenGenerator.encode(new LoginRequest(request.username)).pure[F]
         } yield jwtToken
     }
 
-    def userExists[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[Boolean] = {
+    def userExists[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[Boolean] = {
         for {
             querried <- awsProxy.get(request.username)
         } yield !querried.isEmpty
     }
 
-    def passwordIsCorrect[F[_] : Monad](userNameRegistrationRequest: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[Boolean] = {
+    def passwordIsCorrect[F[_] : Monad](UserNameAndPasswordEvent: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[Boolean] = {
         for {
-            correctPassword <- getPassword[F](userNameRegistrationRequest)
-            isValid <- userNameRegistrationRequest.validatePassword(correctPassword).get.pure[F]
+            correctPassword <- getPassword[F](UserNameAndPasswordEvent)
+            isValid <- UserNameAndPasswordEvent.validatePassword(correctPassword).get.pure[F]
         } yield isValid
     }
 

@@ -8,7 +8,7 @@ import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import awscala._
 import cats.implicits._
 import cats.{Applicative, Monad}
-import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import cats.effect.IO
 import cats.effect.concurrent.Ref
 import dynamodbv2._
@@ -34,7 +34,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
 
   describe("ApiGatewayHandler") {
       describe("handleRequest") {
-          it("Should return a ApiGatewayResponse given a UserNameRegistrationRequest and a Context") {
+          it("Should return a ApiGatewayResponse given a UserNameAndPasswordEvent and a Context") {
               assert(true)
           }
       }
@@ -50,7 +50,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
               }
               val testApiGatewayHandler = new RegistrationApiGatewayHandler
 
-              val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
+              val testUserNameRegistration : UserNameAndPasswordEvent = new UserNameAndPasswordEvent("username", "password")
               val state = Ref.of[IO, List[String]](List.empty[String])
               implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
               val spec = for {
@@ -70,7 +70,7 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
               }
               val testApiGatewayHandler = new RegistrationApiGatewayHandler
 
-              val testUserNameRegistration : UserNameRegistrationRequest = new UserNameRegistrationRequest("username", "password")
+              val testUserNameRegistration : UserNameAndPasswordEvent = new UserNameAndPasswordEvent("username", "password")
               val state = Ref.of[IO, List[String]](List.empty[String])
               implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
               val spec = for {

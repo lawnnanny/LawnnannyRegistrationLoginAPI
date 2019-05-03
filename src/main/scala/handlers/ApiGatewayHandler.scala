@@ -3,7 +3,7 @@ package lambdas.handlers
 import cats.Monad
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
 import cats.effect.IO
-import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import spray.json._
 import scala.collection.JavaConverters._
 import com.amazonaws.services.lambda.runtime.events.{APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent}
@@ -24,9 +24,9 @@ import lambdas.config.GlobalConfigs.AWSConfig
 import scala.language.higherKinds
 import awscala.dynamodbv2._
 
-abstract class ApiGatewayHandler extends RequestHandler[UserNameRegistrationRequest, ApiGatewayResponse] {
+abstract class ApiGatewayHandler extends RequestHandler[UserNameAndPasswordEvent, ApiGatewayResponse] {
 
-    def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse
+    def handleRequest(event: UserNameAndPasswordEvent, context: Context): ApiGatewayResponse
 }
 
 case class MessageAndStatus(val success: Boolean, val message: String)

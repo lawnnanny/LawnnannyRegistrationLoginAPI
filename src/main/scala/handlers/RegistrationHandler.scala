@@ -3,7 +3,7 @@ package lambdas.handlers
 import cats.Monad
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
 import cats.effect.IO
-import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameRegistrationRequest}
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import spray.json._
 import scala.collection.JavaConverters._
 import com.amazonaws.services.lambda.runtime.events.{APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent}
@@ -27,14 +27,14 @@ import lambdas.PasswordHashing._
 
 class RegistrationApiGatewayHandler extends ApiGatewayHandler {
 
-    def handleRequest(event: UserNameRegistrationRequest, context: Context): ApiGatewayResponse = {
+    def handleRequest(event: UserNameAndPasswordEvent, context: Context): ApiGatewayResponse = {
         val headers = Map("x-custom-response-header" -> "my custom response header value")
         val responseFromDatabase = handleUserNameRegistration[IO](event).unsafeRunSync()
         val statusCode = if (responseFromDatabase.success) 200 else 600
         ApiGatewayResponse(statusCode, responseFromDatabase.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
     }
 
-    def handleUserNameRegistration[F[_] : Monad](request: UserNameRegistrationRequest)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+    def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
       for {
           querried <- awsProxy.get(request.username)
           _ <- if(querried.isEmpty) awsProxy.put(request.username, "Password" -> PasswordHashingObject.hashPassword(request.password)) else None.pure[F]
