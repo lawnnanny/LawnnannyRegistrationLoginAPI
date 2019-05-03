@@ -38,6 +38,7 @@ class UserSessionApiGatewayHandler extends ApiGatewayHandler {
     }
 
     def handleUserNameSessionRequest[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+        println("handleUserNameSessionRequest")
         for {
             userExist <- userExists[F](request)
             passwordIsValid <- if(userExist) passwordIsCorrect[F](request) else false.pure[F]
@@ -46,6 +47,7 @@ class UserSessionApiGatewayHandler extends ApiGatewayHandler {
     }
 
     def getPassword[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[String] = {
+        println("getPassword")
         for {
             querried <- awsProxy.get(request.username)
             password <- querried.get.attributes.tail.head.value.s.get.pure[F]
@@ -53,18 +55,21 @@ class UserSessionApiGatewayHandler extends ApiGatewayHandler {
     }
 
     def getJwtToken[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit jasonWebTokenGenerator: JasonWebTokenGenerator): F[Option[String]] = {
+        println("getJwtToken")
         for {
             jwtToken <- jasonWebTokenGenerator.encode(new LoginRequest(request.username)).pure[F]
         } yield jwtToken
     }
 
     def userExists[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[Boolean] = {
+        println("userExists")
         for {
             querried <- awsProxy.get(request.username)
         } yield !querried.isEmpty
     }
 
     def passwordIsCorrect[F[_] : Monad](UserNameAndPasswordEvent: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[Boolean] = {
+        println("passwordIsCorrect")
         for {
             correctPassword <- getPassword[F](UserNameAndPasswordEvent)
             isValid <- UserNameAndPasswordEvent.validatePassword(correctPassword).get.pure[F]
@@ -73,6 +78,7 @@ class UserSessionApiGatewayHandler extends ApiGatewayHandler {
 
     def getMessageAndStatus(querried: Option[String]): MessageAndStatus = {
         if (!querried.isEmpty) {
+            println(querried.get)
             new MessageAndStatus(true, querried.get)
         } else {
             new MessageAndStatus(false, "Failed To Generate JWT Token")
