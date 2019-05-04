@@ -23,10 +23,12 @@ import cats.implicits
 import lambdas.handlers._
 import cats.effect.{Async, IO, Sync}
 import io.circe.Decoder.state
-import lambdas.database._
+import lambdas.database.DatabaseProxy
+import lambdas.database.UserTable
 import scala.language.higherKinds
 import lambdas.JasonWebTokens._
 import lambdas.config.UserSessionConfig
+import lambdas.config.GlobalConfigs._
 
 class UserSessionHandlerTest extends FunSpec with Matchers with MockFactory {
     class TestUserSessionApiGatewayHandler extends UserSessionApiGatewayHandler
@@ -57,7 +59,7 @@ class UserSessionHandlerTest extends FunSpec with Matchers with MockFactory {
                   }
               }
               val testUserSessionApiGatewayHandler = new TestUserSessionApiGatewayHandler1
-              import lambdas.database.flyweight.ioUserTable
+              implicit val mockDatabaseProxy = mock[DatabaseProxy[IO, UserTable]]
               testUserSessionApiGatewayHandler.passwordIsCorrect[IO](testUserNameAndPasswordEvent)
           }
       }

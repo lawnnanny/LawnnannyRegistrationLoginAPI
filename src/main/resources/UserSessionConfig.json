@@ -1,4 +1,4 @@
 {
-    "EXPIRATION_FOR_SESSION": 0,
-    "SECRET_KEY": ""
+    "EXPIRATION_FOR_SESSION": 100,
+    "SECRET_KEY": "secret"
 }

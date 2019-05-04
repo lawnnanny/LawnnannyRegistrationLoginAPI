@@ -12,9 +12,6 @@ case class LoginRequest(val username: String)
 
 class JasonWebTokenGenerator {
     def encode(loginRequest: LoginRequest)(implicit userSessionConfig: UserSessionConfig): Option[String] = {
-        println(loginRequest.username)
-        println(userSessionConfig.EXPIRATION_FOR_SESSION)
-        println(userSessionConfig.SECRET_KEY)
         implicit val loginRequestFormatter = jsonFormat1(LoginRequest)
         val algo = JwtAlgorithm.HS256
         val jsObject = loginRequest.toJson.asJsObject

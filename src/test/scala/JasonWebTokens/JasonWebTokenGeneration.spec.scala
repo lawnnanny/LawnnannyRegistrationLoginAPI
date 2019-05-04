@@ -28,6 +28,7 @@ import spray.json._
 import DefaultJsonProtocol._
 import lambdas.config._
 import lambdas.JasonWebTokens.flyWeight._
+import pdi.jwt.{JwtSprayJson, JwtAlgorithm, JwtClaim}
 
 class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory {
     class TestApiGatewayHandler extends RegistrationApiGatewayHandler
@@ -43,6 +44,22 @@ class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory
               val optionWithCorrectJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig)
               val returnedJwtToken = optionWithCorrectJwtToken.get
               assert(returnedJwtToken.equals(correctJwtToken))
+          }
+          it("Should Be A Valid JWT Encoding") {
+              val jsonWebTokenGenerator = implicitly[JasonWebTokenGenerator]
+              val testLoginRequest = new LoginRequest("bob")
+              val testUserSessionConfig = new UserSessionConfig(0, "secret")
+              val returnedJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig).get
+              val result = JwtSprayJson.decodeJson(returnedJwtToken, testUserSessionConfig.SECRET_KEY, Seq(JwtAlgorithm.HS256))
+              assert(result.isSuccess)
+          }
+          it("Should Not Be A Valid JWT Encoding") {
+              val jsonWebTokenGenerator = implicitly[JasonWebTokenGenerator]
+              val testLoginRequest = new LoginRequest("bob")
+              val testUserSessionConfig = new UserSessionConfig(0, "secret")
+              val returnedJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig).get
+              val result = JwtSprayJson.decodeJson(returnedJwtToken, "not the key", Seq(JwtAlgorithm.HS256))
+              assert(result.isFailure)
           }
       }
   }
