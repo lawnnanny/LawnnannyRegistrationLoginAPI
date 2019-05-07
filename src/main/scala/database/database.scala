@@ -1,13 +1,10 @@
 package lambdas.database
 
 import awscala._
-import cats.Monad
-import cats.effect.{Async, IO, Sync}
-import dynamodbv2._
-import cats.syntax.apply._
+import awscala.dynamodbv2._
+import cats.effect.Sync
 import lambdas.config.AWSConfig
-import spray.json.DefaultJsonProtocol
-import lambdas.config.GlobalConfigs.AWSConfig
+
 import scala.language.higherKinds
 
 trait DatabaseProxy[F[_], T <: DynamoTable] {

@@ -1,12 +1,11 @@
 package lambdas.JasonWebTokens
 
-import java.time.Instant
-import scala.language.higherKinds
-import spray.json.DefaultJsonProtocol._
-import cats.{Applicative, Monad}
-import pdi.jwt.{JwtSprayJson, JwtAlgorithm, JwtClaim}
-import spray.json._
 import lambdas.config.UserSessionConfig
+import pdi.jwt.{JwtAlgorithm, JwtSprayJson}
+import spray.json.DefaultJsonProtocol._
+import spray.json._
+
+import scala.language.higherKinds
 
 case class LoginRequest(val username: String)
 

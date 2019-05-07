@@ -1,12 +1,9 @@
 package lambdas.config
 
-import org.scalatest._
-import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
-import awscala._
-import lambdas.config._
-import lambdas.config.GlobalConfigs._
 import lambdas.config.AWSConfigProtocol.awsConfigFormat
 import lambdas.config.UserSessionConfigProtocol.userSessionConfigFormat
+import org.scalamock.scalatest.MockFactory
+import org.scalatest._
 
 class GlobalConfigTest extends FunSpec with Matchers with MockFactory {
     describe("GlobalConfig") {

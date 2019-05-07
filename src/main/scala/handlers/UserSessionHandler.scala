@@ -1,31 +1,19 @@
 package lambdas.handlers
 
 import cats.Monad
-import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
 import cats.effect.IO
-import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
-import spray.json._
-import scala.collection.JavaConverters._
-import com.amazonaws.services.lambda.runtime.events.{APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent}
-import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
-import io.circe._
-import io.circe.generic.auto._
-import io.circe.parser._
-import io.circe.syntax._
-import lambdas.database._
-import scala.io.Source
-import scala.collection.JavaConverters
-import cats.effect._
-import cats.effect.syntax.all._
 import cats.implicits._
-import scala.util.Either
-import lambdas.database.flyweight.ioUserTable
-import scala.language.higherKinds
-import awscala.dynamodbv2._
+import com.amazonaws.services.lambda.runtime.Context
 import lambdas.JasonWebTokens._
 import lambdas.JasonWebTokens.flyWeight._
-import lambdas.config.GlobalConfigs._
 import lambdas.PasswordHashing.PasswordHashingObject._
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
+import lambdas.config.GlobalConfigs._
+import lambdas.database._
+import lambdas.database.flyweight.ioUserTable
+
+import scala.collection.JavaConverters
+import scala.language.higherKinds
 
 class UserSessionApiGatewayHandler extends ApiGatewayHandler {
 

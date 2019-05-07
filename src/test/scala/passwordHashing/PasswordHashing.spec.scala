@@ -1,11 +1,9 @@
 package lambdas.PasswordHashing
 
-import lambdas.Models.Users.Users.User
-import org.scalacheck._
-import org.scalatest._
 import com.github.t3hnar.bcrypt._
-import org.scalamock.scalatest.MockFactory
 import lambdas.ResponseAndMessageTypes._
+import org.scalamock.scalatest.MockFactory
+import org.scalatest._
 
 class PasswordHashingTest extends FunSpec with Matchers with MockFactory {
     describe("PasswordHashing") {
@@ -25,7 +23,6 @@ class PasswordHashingTest extends FunSpec with Matchers with MockFactory {
         }
         describe("hashPassword") {
             it("Should return hashed password given a string") {
-                import lambdas.PasswordHashing.PasswordHashingObject._
                 val hashedPassword = PasswordHashingObject.hashPassword(password)
                 assert(password.isBcrypted(hashedPassword))
             }

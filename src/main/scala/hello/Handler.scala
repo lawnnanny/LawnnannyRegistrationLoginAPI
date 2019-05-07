@@ -1,10 +1,9 @@
 package lambdas.hello
 
 import com.amazonaws.services.lambda.runtime.{Context, RequestHandler}
+import lambdas.ResponseAndMessageTypes._
 
 import scala.collection.JavaConverters
-import lambdas._
-import lambdas.ResponseAndMessageTypes._
 
 class ApiGatewayHandler extends RequestHandler[UserNameAndPasswordEvent, ApiGatewayResponse] {
 
