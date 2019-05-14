@@ -1,18 +1,15 @@
 package lambdas.database
 
 import awscala._
-import cats.Monad
-import cats.effect.{Async, IO, Sync}
-import dynamodbv2._
-import cats.syntax.apply._
+import awscala.dynamodbv2._
+import cats.effect.Sync
 import lambdas.config.AWSConfig
-import spray.json.DefaultJsonProtocol
-import lambdas.config.GlobalConfigs.AWSConfig
+
 import scala.language.higherKinds
 
 trait DatabaseProxy[F[_], T <: DynamoTable] {
     def put(primaryKey: String, values: (String, Any)*): F[Unit]
-    def get(primaryKey: String): F[Option[_]]
+    def get(primaryKey: String): F[Option[Item]]
 }
 
 abstract class AccessKeys
@@ -29,7 +26,7 @@ sealed case class AwsAccessKeys(private val config: AWSConfig ) extends AccessKe
     }
 }
 
-case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKeys, tableName: String ) extends DatabaseProxy[F, T] {
+case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKeys, tableName: String) extends DatabaseProxy[F, T] {
 
       def getTable(dynamo: DynamoDB, table: String) : Table = dynamo.table(tableName).get
 
@@ -40,7 +37,7 @@ case class AwsDynamoProxy[F[_]: Sync, T <: DynamoTable](accessKeys: AwsAccessKey
           Sync[F].delay(dynamoTable.put(primaryKey, values: _*))
       }
 
-      override def get(primaryKey: String):F[Option[_]] = {
+      override def get(primaryKey: String): F[Option[Item]] = {
           implicit val region = accessKeys.getRegion
           implicit val awsDynamoDB: DynamoDB = DynamoDB(accessKeys.getAccessKey, accessKeys.getSecreateAccessKey)
           val dynamoTable: Table = getTable(awsDynamoDB, tableName)

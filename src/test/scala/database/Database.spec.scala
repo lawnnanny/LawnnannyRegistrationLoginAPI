@@ -3,18 +3,15 @@ package lambdas.database
 import java.util
 import java.util.Map
 
-import org.scalatest._
-import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
 import awscala._
+import awscala.dynamodbv2._
 import cats.effect.IO
 import com.amazonaws.services.dynamodbv2.model
-import dynamodbv2._
-import org.scalacheck._
-import lambdas.database._
-import lambdas.config
-import lambdas.config.AWSConfig
-import lambdas.config
 import com.amazonaws.services.{dynamodbv2 => aws}
+import lambdas.config.AWSConfig
+import org.scalacheck._
+import org.scalamock.scalatest.MockFactory
+import org.scalatest._
 
 class DatabaseTest extends FunSpec with Matchers with MockFactory {
 

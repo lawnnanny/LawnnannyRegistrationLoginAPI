@@ -1,17 +1,9 @@
 package lambdas.database
 
-import org.scalatest._
-import org.scalamock.scalatest.{AsyncMockFactory, MockFactory}
-import awscala._
 import cats.effect.IO
-import dynamodbv2._
-import org.scalacheck._
-import lambdas.database._
-import lambdas.config
-import lambdas.config.AWSConfig
-import lambdas.config
-import lambdas.config.GlobalConfigs.AWSConfig
 import lambdas.database.flyweight.ioUserTable
+import org.scalamock.scalatest.MockFactory
+import org.scalatest._
 
 class AwsDynamoProxyFactoryTest extends FunSpec with Matchers with MockFactory {
   describe("AwsDynamoProxyFactory") {

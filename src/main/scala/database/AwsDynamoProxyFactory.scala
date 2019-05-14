@@ -1,11 +1,10 @@
 package lambdas.database
 
-import scala.language.higherKinds
-import cats.Monad
-import com.amazonaws.auth.AWSCredentials
-import cats.effect.{Async, IO, Sync}
-import lambdas.config._
+import cats.effect.{IO, Sync}
 import lambdas.config.GlobalConfigs.AWSConfig
+import lambdas.config._
+
+import scala.language.higherKinds
 
 trait DynamoTable
 trait UserTable extends DynamoTable
