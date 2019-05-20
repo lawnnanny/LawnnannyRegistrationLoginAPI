@@ -6,7 +6,6 @@ import lambdas.handlers._
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
 import pdi.jwt.{JwtAlgorithm, JwtSprayJson}
-
 import scala.language.higherKinds
 
 class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory {
@@ -21,14 +20,14 @@ class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory
               val testLoginRequest = new LoginRequest("shane")
               val testUserSessionConfig = new UserSessionConfig(0, "secret")
               val optionWithCorrectJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig)
-              val returnedJwtToken = optionWithCorrectJwtToken.get
+              val returnedJwtToken = optionWithCorrectJwtToken
               assert(returnedJwtToken.equals(correctJwtToken))
           }
           it("Should Be A Valid JWT Encoding") {
               val jsonWebTokenGenerator = implicitly[JasonWebTokenGenerator]
               val testLoginRequest = new LoginRequest("bob")
               val testUserSessionConfig = new UserSessionConfig(0, "secret")
-              val returnedJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig).get
+              val returnedJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig)
               val result = JwtSprayJson.decodeJson(returnedJwtToken, testUserSessionConfig.SECRET_KEY, Seq(JwtAlgorithm.HS256))
               assert(result.isSuccess)
           }
@@ -36,7 +35,7 @@ class JasonWebTokenGenerationTest extends FunSpec with Matchers with MockFactory
               val jsonWebTokenGenerator = implicitly[JasonWebTokenGenerator]
               val testLoginRequest = new LoginRequest("bob")
               val testUserSessionConfig = new UserSessionConfig(0, "secret")
-              val returnedJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig).get
+              val returnedJwtToken = jsonWebTokenGenerator.encode(testLoginRequest)(testUserSessionConfig)
               val result = JwtSprayJson.decodeJson(returnedJwtToken, "not the key", Seq(JwtAlgorithm.HS256))
               assert(result.isFailure)
           }

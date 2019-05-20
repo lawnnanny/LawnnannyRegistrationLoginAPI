@@ -3,7 +3,6 @@ package lambdas.config
 import lambdas.config.AWSConfigProtocol.awsConfigFormat
 import lambdas.config.UserSessionConfigProtocol.userSessionConfigFormat
 import spray.json._
-
 import scala.io.Source
 
 abstract class Config {

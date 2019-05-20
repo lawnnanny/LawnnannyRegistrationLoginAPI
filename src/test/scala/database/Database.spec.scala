@@ -2,7 +2,6 @@ package lambdas.database
 
 import java.util
 import java.util.Map
-
 import awscala._
 import awscala.dynamodbv2._
 import cats.effect.IO

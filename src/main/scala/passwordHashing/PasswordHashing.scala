@@ -8,6 +8,6 @@ import scala.util.{Try, Success, Failure}
 object PasswordHashingObject {
     def hashPassword(password: String) : String = password.bcrypt
     implicit class PasswordHashing(userNameRegistration: UserNameAndPasswordEvent){
-        def validatePassword(correctPassword: String): Try[Boolean] = userNameRegistration.password.isBcryptedSafe(correctPassword)
+        def validatePassword(correctPassword: String) = userNameRegistration.password.isBcryptedSafe(correctPassword)
     }
 }

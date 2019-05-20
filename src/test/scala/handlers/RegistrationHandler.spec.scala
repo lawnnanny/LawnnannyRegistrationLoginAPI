@@ -1,6 +1,5 @@
 package lambdas.handlers
 
-import awscala._
 import awscala.dynamodbv2._
 import cats.Applicative
 import cats.effect.IO
@@ -11,7 +10,6 @@ import lambdas.ResponseAndMessageTypes.UserNameAndPasswordEvent
 import lambdas.database._
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
-
 import scala.language.higherKinds
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
@@ -19,12 +17,6 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
     val testApiGatewayHandler = new TestApiGatewayHandler
 
   describe("ApiGatewayHandler") {
-      describe("handleRequest") {
-          it("Should return a ApiGatewayResponse given a UserNameAndPasswordEvent and a Context") {
-              assert(true)
-          }
-      }
-
       describe("handleUserNameRegistration") {
           it("Should Make A Get Request With The User Name And Not A Put Request") {
               class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
@@ -68,20 +60,6 @@ class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
                   }
               } yield as
               spec.unsafeToFuture()
-          }
-      }
-      // as <- IO { assert(st == List("username", "username")) }
-      describe("getMessageAndStatus") {
-          it("Should Return A Un-Successful MessageAndStatus Given A Option") {
-              val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(Some(Unit))
-              val correctMessageAndStatus = new MessageAndStatus(false, "Account Already Exists")
-              assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
-          }
-
-          it("Should Return A Successful MessageAndStatus Given A Option") {
-              val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(None)
-              val correctMessageAndStatus = new MessageAndStatus(true, "Account Was Created")
-              assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
           }
       }
   }

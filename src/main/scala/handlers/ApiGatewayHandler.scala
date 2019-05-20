@@ -10,4 +10,3 @@ abstract class ApiGatewayHandler extends RequestHandler[UserNameAndPasswordEvent
     def handleRequest(event: UserNameAndPasswordEvent, context: Context): ApiGatewayResponse
 }
 
-case class MessageAndStatus(val success: Boolean, val message: String)
