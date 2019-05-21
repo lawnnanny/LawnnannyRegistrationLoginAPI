@@ -16,6 +16,7 @@ class UserSessionHandlerTest extends FunSpec with Matchers with MockFactory {
   val testOutputMessage = "outputMessage"
   val testUsername = "userName"
   val testPassword = "testPassword"
+  val testErrorMessage = "errorMessage"
 
   val testUserSessionHandler = new UserSessionHandler
 
@@ -34,12 +35,25 @@ class UserSessionHandlerTest extends FunSpec with Matchers with MockFactory {
     }
   }
 
+  val testUserSessionHandlerWithInjectedUserLogicOperationsError = new UserSessionHandler {
+    override def getUserLogic : UserLogicOperations = new UserLogicOperations {
+      override def handleUserNameSessionRequest[F[+_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): EitherT[F, String, String] = {
+        EitherT.leftT(testErrorMessage)
+      }
+    }
+  }
+
   describe("UserSessionHandler") {
     describe("handleRequest") {
       it("should return a ApiGatewayResponse") {
         val apiGatewayResponse = testUserSessionHandlerWithInjectedUserLogicOperationsHappyPath.handleRequest(testEvent, mockContext)
         apiGatewayResponse.statusCode shouldEqual 200
         apiGatewayResponse.body shouldEqual testOutputMessage
+      }
+      it("should return a ApiGatewayResponse with error") {
+        val apiGatewayResponse = testUserSessionHandlerWithInjectedUserLogicOperationsError.handleRequest(testEvent, mockContext)
+        apiGatewayResponse.statusCode shouldEqual 600
+        apiGatewayResponse.body shouldEqual testErrorMessage
       }
     }
 

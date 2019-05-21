@@ -21,6 +21,4 @@ class UserSessionHandler extends ApiGatewayHandler {
         val statusCode = if (messageAndStatus.success) 200 else 600
         ApiGatewayResponse(statusCode, messageAndStatus.message, JavaConverters.mapAsJavaMap[String, Object](headers), true)
     }
-
-    def getUserLogic : UserLogicOperations = implicitly[UserLogicOperations]
 }

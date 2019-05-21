@@ -3,12 +3,17 @@ package handlers.UserLogic
 import cats.Monad
 import cats.data.EitherT
 import cats.implicits._
+import handlers.GetMessageAndStatus.eitherToGetMessageAndStatus
+import handlers.MessageAndStatus
 import lambdas.JasonWebTokens.flyWeight.jasonWebTokenGenerator
 import lambdas.JasonWebTokens.{JasonWebTokenGenerator, LoginRequest}
+import lambdas.PasswordHashing.PasswordHashingObject
 import lambdas.PasswordHashing.PasswordHashingObject._
 import lambdas.ResponseAndMessageTypes.UserNameAndPasswordEvent
 import lambdas.config.GlobalConfigs._
 import lambdas.database.{DatabaseProxy, UserTable}
+
+
 import scala.language.higherKinds
 
 class UserLogicOperations {
@@ -53,6 +58,17 @@ class UserLogicOperations {
       }
     } yield eitherWithMessages
     EitherT(eitherOfF)
+  }
+
+  def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+    for {
+      querried <- awsProxy.get(request.username)
+      eitherResponse: Either[String, String] = querried match {
+        case Some(x) => Left("Account Already Exists")
+        case None => Right("Account Was Created")
+      }
+      _ <- awsProxy.put(request.username, "Password" -> PasswordHashingObject.hashPassword(request.password))
+    } yield (eitherToGetMessageAndStatus(eitherResponse))
   }
 }
 
