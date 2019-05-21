@@ -8,7 +8,6 @@ import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordE
 import lambdas.database.{DatabaseProxy, UserTable}
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
-
 import scala.language.higherKinds
 
 class UserSessionHandlerTest extends FunSpec with Matchers with MockFactory {

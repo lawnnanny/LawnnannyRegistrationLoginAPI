@@ -1,14 +1,8 @@
 package lambdas.handlers
 
-import cats.Monad
 import cats.effect.IO
-import cats.implicits._
 import com.amazonaws.services.lambda.runtime.Context
-import handlers.GetMessageAndStatus.eitherToGetMessageAndStatus
-import handlers.MessageAndStatus
-import lambdas.PasswordHashing._
 import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
-import lambdas.database._
 import lambdas.database.flyweight.ioUserTable
 import scala.collection.JavaConverters
 import scala.language.higherKinds

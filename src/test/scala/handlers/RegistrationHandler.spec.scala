@@ -1,20 +1,14 @@
 package lambdas.handlers
 
-import awscala.dynamodbv2._
-import cats.{Applicative, Monad}
-import cats.data.EitherT
-import cats.effect.IO
-import cats.effect.concurrent.Ref
+import cats.Monad
 import cats.implicits._
 import com.amazonaws.services.lambda.runtime.Context
-import com.github.t3hnar.bcrypt._
 import handlers.MessageAndStatus
 import handlers.UserLogic.UserLogicOperations
 import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import lambdas.database._
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
-
 import scala.language.higherKinds
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
