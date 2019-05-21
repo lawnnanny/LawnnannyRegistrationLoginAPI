@@ -5,11 +5,8 @@ import com.amazonaws.services.lambda.runtime.Context
 import handlers.GetMessageAndStatus.eitherToGetMessageAndStatus
 import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import lambdas.database.flyweight.ioUserTable
-import handlers.UserLogic.{UserLogicOperations, flyWeight}
-
 import scala.collection.JavaConverters
 import scala.language.higherKinds
-import handlers.UserLogic.flyWeight.userLogicOperations
 
 class UserSessionHandler extends ApiGatewayHandler {
 

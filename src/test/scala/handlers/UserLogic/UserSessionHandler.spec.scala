@@ -5,6 +5,8 @@ import cats.{Applicative, Monad}
 import cats.data.EitherT
 import cats.effect.IO
 import cats.effect.concurrent.Ref
+import cats.implicits._
+import com.github.t3hnar.bcrypt._
 import handlers.UserLogic.flyWeight.userLogicOperations
 import lambdas.JasonWebTokens.{JasonWebTokenGenerator, _}
 import lambdas.ResponseAndMessageTypes.UserNameAndPasswordEvent
@@ -13,17 +15,6 @@ import lambdas.database.{DatabaseProxy, UserTable}
 import lambdas.handlers.RegistrationApiGatewayHandler
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
-import awscala.dynamodbv2._
-import cats.Applicative
-import cats.effect.IO
-import cats.effect.concurrent.Ref
-import cats.implicits._
-import com.github.t3hnar.bcrypt._
-import lambdas.ResponseAndMessageTypes.UserNameAndPasswordEvent
-import lambdas.database._
-import org.scalamock.scalatest.MockFactory
-import org.scalatest._
-
 import scala.language.higherKinds
 
 class UserLogicTest extends FunSpec with Matchers with MockFactory {
