@@ -9,17 +9,17 @@ import scala.language.higherKinds
 case class LoginRequest(val username: String)
 
 abstract class JasonWebTokenGenerator {
-    def encode(loginRequest: LoginRequest)(implicit userSessionConfig: UserSessionConfig): Option[String]
+    def encode(loginRequest: LoginRequest)(implicit userSessionConfig: UserSessionConfig): String
 }
 
 object JasonWebTokenGenerator {
     def apply() : JasonWebTokenGenerator = {
         new JasonWebTokenGenerator {
-            override def encode(loginRequest: LoginRequest)(implicit userSessionConfig: UserSessionConfig): Option[String] = {
+            override def encode(loginRequest: LoginRequest)(implicit userSessionConfig: UserSessionConfig): String = {
                 implicit val loginRequestFormatter = jsonFormat1(LoginRequest)
                 val algo = JwtAlgorithm.HS256
                 val jsObject = loginRequest.toJson.asJsObject
-                Some(JwtSprayJson.encode(jsObject, userSessionConfig.SECRET_KEY, algo))
+                JwtSprayJson.encode(jsObject, userSessionConfig.SECRET_KEY, algo)
             }
         }
     }

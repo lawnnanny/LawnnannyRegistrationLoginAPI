@@ -4,7 +4,6 @@ import awscala._
 import awscala.dynamodbv2._
 import cats.effect.Sync
 import lambdas.config.AWSConfig
-
 import scala.language.higherKinds
 
 trait DatabaseProxy[F[_], T <: DynamoTable] {

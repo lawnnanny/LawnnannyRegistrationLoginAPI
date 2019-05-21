@@ -1,13 +1,16 @@
 package lambdas.handlers
 
-import awscala._
 import awscala.dynamodbv2._
-import cats.Applicative
+import cats.{Applicative, Monad}
+import cats.data.EitherT
 import cats.effect.IO
 import cats.effect.concurrent.Ref
 import cats.implicits._
+import com.amazonaws.services.lambda.runtime.Context
 import com.github.t3hnar.bcrypt._
-import lambdas.ResponseAndMessageTypes.UserNameAndPasswordEvent
+import handlers.MessageAndStatus
+import handlers.UserLogic.UserLogicOperations
+import lambdas.ResponseAndMessageTypes.{ApiGatewayResponse, UserNameAndPasswordEvent}
 import lambdas.database._
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
@@ -15,74 +18,52 @@ import org.scalatest._
 import scala.language.higherKinds
 
 class RegistrationHandlerTest extends FunSpec with Matchers with MockFactory {
-    class TestApiGatewayHandler extends RegistrationApiGatewayHandler
-    val testApiGatewayHandler = new TestApiGatewayHandler
+  val testOutputMessage = "outputMessage"
+  val testErrorMessage = "errorMessage"
 
-  describe("ApiGatewayHandler") {
-      describe("handleRequest") {
-          it("Should return a ApiGatewayResponse given a UserNameAndPasswordEvent and a Context") {
-              assert(true)
-          }
+  val testUsername = "testUsername"
+  val testPassword  = "testPassword"
+
+  val testUserSessionHandler = new UserSessionHandler
+
+  val testEvent = new UserNameAndPasswordEvent
+
+  testEvent.setUsername(testUsername)
+  testEvent.setPassword(testPassword)
+
+  val testSuccessMessageAndStatus = MessageAndStatus(true, testOutputMessage)
+  val testFailedMessageAndStatus = MessageAndStatus(false, testErrorMessage)
+
+  val mockContext = mock[Context]
+
+  val testRegistrationHandlerWithInjectedUserLogicOperationsHappyPath = new RegistrationApiGatewayHandler {
+    override def getUserLogic : UserLogicOperations = new UserLogicOperations {
+      override def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+        testSuccessMessageAndStatus.pure[F]
       }
+    }
+  }
 
-      describe("handleUserNameRegistration") {
-          it("Should Make A Get Request With The User Name And Not A Put Request") {
-              class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
-                  def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ primaryKey)
-                  def get(primaryKey: String): F[Option[Item]] = {
-                      state.update(_ :+ primaryKey)
-                      None.pure[F]
-                  }
-              }
-              val testApiGatewayHandler = new RegistrationApiGatewayHandler
-
-              val testUserNameRegistration : UserNameAndPasswordEvent = new UserNameAndPasswordEvent("username", "password")
-              val state = Ref.of[IO, List[String]](List.empty[String])
-              implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
-              val spec = for {
-                  _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
-                  st <- state.unsafeRunSync().get
-                  as <- IO { assert(st == List("username")) }
-              } yield as
-              spec.unsafeToFuture()
-          }
-          it("Should Make A Get Request With The User Name And A Put Request") {
-              class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
-                  def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ values.toList.head._2.asInstanceOf[String])
-                  def get(primaryKey: String): F[Option[Item]] = {
-                      state.update(_ :+ primaryKey)
-                      Some(mock[Item]).pure[F]
-                  }
-              }
-              val testApiGatewayHandler = new RegistrationApiGatewayHandler
-
-              val testUserNameRegistration : UserNameAndPasswordEvent = new UserNameAndPasswordEvent("username", "password")
-              val state = Ref.of[IO, List[String]](List.empty[String])
-              implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
-              val spec = for {
-                  _ <- testApiGatewayHandler.handleUserNameRegistration[IO](testUserNameRegistration)
-                  st <- state.unsafeRunSync().get
-                  as <- IO {
-                      assert(st.get(0).get.equals("username"))
-                      assert("password".isBcrypted(st.get(1).get))
-                  }
-              } yield as
-              spec.unsafeToFuture()
-          }
+  val testRegistrationHandlerWithInjectedUserLogicOperationsError = new RegistrationApiGatewayHandler {
+    override def getUserLogic : UserLogicOperations = new UserLogicOperations {
+      override def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
+        testFailedMessageAndStatus.pure[F]
       }
-      // as <- IO { assert(st == List("username", "username")) }
-      describe("getMessageAndStatus") {
-          it("Should Return A Un-Successful MessageAndStatus Given A Option") {
-              val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(Some(Unit))
-              val correctMessageAndStatus = new MessageAndStatus(false, "Account Already Exists")
-              assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
-          }
+    }
+  }
 
-          it("Should Return A Successful MessageAndStatus Given A Option") {
-              val returnedMessageAndStatus = testApiGatewayHandler.getMessageAndStatus(None)
-              val correctMessageAndStatus = new MessageAndStatus(true, "Account Was Created")
-              assert(returnedMessageAndStatus.equals(correctMessageAndStatus))
-          }
+  describe("RegistrationApiGatewayHandler") {
+    describe("handleRequest") {
+      it("Should return a successful ApiGatewayResponse") {
+        val returnedApiGatewayHandler: ApiGatewayResponse = testRegistrationHandlerWithInjectedUserLogicOperationsHappyPath.handleRequest(testEvent, mockContext)
+        returnedApiGatewayHandler.statusCode shouldEqual 200
+        returnedApiGatewayHandler.body shouldEqual testOutputMessage
       }
+      it("Should return a unsuccessful ApiGatewayResponse") {
+        val returnedApiGatewayHandler: ApiGatewayResponse = testRegistrationHandlerWithInjectedUserLogicOperationsError.handleRequest(testEvent, mockContext)
+        returnedApiGatewayHandler.statusCode shouldEqual 600
+        returnedApiGatewayHandler.body shouldEqual testErrorMessage
+      }
+    }
   }
 }
