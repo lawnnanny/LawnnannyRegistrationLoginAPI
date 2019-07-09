@@ -15,13 +15,13 @@ assemblyJarName in assembly := "lambda.jar"
 addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.0")
 
 libraryDependencies ++= Seq(
-  "com.amazonaws" % "aws-lambda-java-events" % "2.2.5",
   "com.amazonaws" % "aws-lambda-java-core" % "1.2.0",
   "com.github.seratch" %% "awscala-dynamodb" % "0.8.+",
   "com.pauldijou" %% "jwt-spray-json" % "2.1.0"
 )
 
 libraryDependencies += "io.github.mkotsur" %% "aws-lambda-scala" % {"0.1.1"}
+libraryDependencies += "com.amazonaws" % "aws-lambda-java-events" % "2.2.5"
 libraryDependencies += "org.scalactic" %% "scalactic" % "3.0.5"
 libraryDependencies += "org.typelevel" %% "cats-effect" % "1.0.0" withSources() withJavadoc()
 libraryDependencies += "org.scalamock" %% "scalamock" % "4.1.0" % Test
