@@ -3,6 +3,7 @@ package handlers.UserLogic
 import cats.Monad
 import cats.data.EitherT
 import cats.implicits._
+import cats.data.EitherT
 import handlers.GetMessageAndStatus.eitherToGetMessageAndStatus
 import handlers.MessageAndStatus
 import lambdas.JasonWebTokens.flyWeight.jasonWebTokenGenerator
@@ -60,18 +61,50 @@ class UserLogicOperations {
     EitherT(eitherOfF)
   }
 
-  def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]): F[MessageAndStatus] = {
-    for {
+  def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]) : F[MessageAndStatus]  = {
+
+    println(request.username)
+    println(request.password)
+
+    val userExists: EitherT[F, String, String] = EitherT( for {
       querried <- awsProxy.get(request.username)
-      eitherResponse: Either[String, String] = querried match {
+    } yield({
+      querried match {
         case Some(x) => Left("Account Already Exists")
-        case None => Right("Account Was Created")
+        case None => Right("Account Will Be Created")
       }
-      _ <- awsProxy.put(request.username, "Password" -> PasswordHashingObject.hashPassword(request.password))
-    } yield (eitherToGetMessageAndStatus(eitherResponse))
+    }))
+
+    //println(userExists.value)
+
+    lazy val createUser: EitherT[F, String, String] = EitherT({
+      for {
+        _ <- awsProxy.put(request.username, "Password" -> PasswordHashingObject.hashPassword(request.password))
+      } yield (
+        Right("Account Was Created"))
+    })
+    
+    println("Create user 1")
+    println("After create user")
+
+    val resultOfRegistration: EitherT[F, String, String] = for {
+      stuff <- userExists
+      wasItCreated <- createUser
+    } yield (wasItCreated)
+
+    resultOfRegistration.value.flatMap((result: Either[String, String]) => {
+      (result match {
+        case Right(x) => MessageAndStatus(true, x)
+        case Left(x) => MessageAndStatus(false ,x)
+      }).pure[F]
+    })
   }
 }
 
 object flyWeight {
   implicit val userLogicOperations : UserLogicOperations = new UserLogicOperations
+}
+
+object UserLogicOperations {
+  implicit def apply : UserLogicOperations = new UserLogicOperations
 }

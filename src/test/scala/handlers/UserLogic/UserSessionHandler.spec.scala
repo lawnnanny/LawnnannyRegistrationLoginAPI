@@ -8,6 +8,7 @@ import cats.effect.concurrent.Ref
 import cats.implicits._
 import com.github.t3hnar.bcrypt._
 import handlers.UserLogic.flyWeight.userLogicOperations
+import handlers.UserLogic._
 import lambdas.JasonWebTokens.{JasonWebTokenGenerator, _}
 import lambdas.ResponseAndMessageTypes.UserNameAndPasswordEvent
 import lambdas.config.UserSessionConfig
@@ -16,6 +17,9 @@ import lambdas.handlers.RegistrationApiGatewayHandler
 import org.scalamock.scalatest.MockFactory
 import org.scalatest._
 import scala.language.higherKinds
+import scala.collection.mutable
+import scala.collection.mutable._
+import handlers.MessageAndStatus
 
 class UserLogicTest extends FunSpec with Matchers with MockFactory {
 
@@ -218,48 +222,59 @@ class UserLogicTest extends FunSpec with Matchers with MockFactory {
       }
 
       describe("handleUserNameRegistration") {
-        it("Should Make A Get Request With The User Name And Not A Put Request") {
-          class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
-            def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ primaryKey)
-            def get(primaryKey: String): F[Option[Item]] = {
-              state.update(_ :+ primaryKey)
-              None.pure[F]
-            }
-          }
-          val testApiGatewayHandler = new RegistrationApiGatewayHandler
+        val userLogicOperations = implicitly[UserLogicOperations]
+        val testUserName = "username"
+        val testPassword = "password"
+        val testUserNameRegistrationEvent : UserNameAndPasswordEvent = new UserNameAndPasswordEvent(testUserName, testPassword)
 
-          val testUserNameRegistration : UserNameAndPasswordEvent = new UserNameAndPasswordEvent("username", "password")
-          val state = Ref.of[IO, List[String]](List.empty[String])
-          implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
-          val spec = for {
-            _ <- defaultUserLogic.handleUserNameRegistration[IO](testUserNameRegistration)
-            st <- state.unsafeRunSync().get
-            as <- IO { assert(st == List("username")) }
-          } yield as
-          spec.unsafeToFuture()
+        it("Should create a user if one doesnt already exist") {
+
+          (mockDataBaseProxy.get _)
+            .expects(testUserName)
+            .returning(None.pure[IO])
+
+          (mockDataBaseProxy.put _)
+            .expects(where {
+              (userName : String , body: Any) => {
+                val seq = body.asInstanceOf[Seq[(String, Any)]]
+                val encryptedPassword :String = seq.head._2.asInstanceOf[String]
+                userName == testUserName && seq.head._1 == "Password" && testPassword.isBcrypted(encryptedPassword)
+              }
+            }).returning(IO{})
+          
+          val result: MessageAndStatus = userLogicOperations.handleUserNameRegistration[IO](testUserNameRegistrationEvent).unsafeRunSync()
+
+          assert(result.success)
+          assert(result.message == "Account Was Created")
+
         }
-        it("Should Make A Get Request With The User Name And A Put Request") {
-          class TestAwsDynamoProxy[F[+_]: Applicative, T <: UserTable](state: Ref[F, List[String]]) extends DatabaseProxy[F, UserTable]{
-            def put(primaryKey: String, values: (String, Any)*): F[Unit] = state.update(_ :+ values.toList.head._2.asInstanceOf[String])
-            def get(primaryKey: String): F[Option[Item]] = {
-              state.update(_ :+ primaryKey)
-              Some(mock[Item]).pure[F]
-            }
-          }
-          val testApiGatewayHandler = new RegistrationApiGatewayHandler
 
-          val testUserNameRegistration : UserNameAndPasswordEvent = new UserNameAndPasswordEvent("username", "password")
-          val state = Ref.of[IO, List[String]](List.empty[String])
-          implicit val testDynamoProxy :TestAwsDynamoProxy[IO, UserTable] = new TestAwsDynamoProxy[IO, UserTable](state.unsafeRunSync())
-          val spec = for {
-            _ <- defaultUserLogic.handleUserNameRegistration[IO](testUserNameRegistration)
-            st <- state.unsafeRunSync().get
-            as <- IO {
-              assert(st.get(0).get.equals("username"))
-              assert("password".isBcrypted(st.get(1).get))
-            }
-          } yield as
-          spec.unsafeToFuture()
+        it("Should not create a user if one already exists") {
+
+          val mockItem = mock[Item]
+
+          (mockItem.productIterator _)
+            .expects()
+            .anyNumberOfTimes
+
+          (mockItem.productPrefix _)
+            .expects()
+            .anyNumberOfTimes
+
+          (mockDataBaseProxy.get _)
+            .expects(testUserName)
+            .returning(IO(Some(mockItem)))
+          
+          (mockDataBaseProxy.put _)
+              .expects(*, *)
+              .never()
+          
+          val result: MessageAndStatus = userLogicOperations.handleUserNameRegistration[IO](testUserNameRegistrationEvent).unsafeRunSync()
+          println(result)
+
+          assert(!result.success)
+          assert(result.message == "Account Already Exists")
+
         }
       }
   }
