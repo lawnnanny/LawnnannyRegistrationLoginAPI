@@ -270,7 +270,6 @@ class UserLogicTest extends FunSpec with Matchers with MockFactory {
               .never()
           
           val result: MessageAndStatus = userLogicOperations.handleUserNameRegistration[IO](testUserNameRegistrationEvent).unsafeRunSync()
-          println(result)
 
           assert(!result.success)
           assert(result.message == "Account Already Exists")
