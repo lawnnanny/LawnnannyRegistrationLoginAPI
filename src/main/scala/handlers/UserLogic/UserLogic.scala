@@ -72,7 +72,7 @@ class UserLogicOperations {
       }
     }))
 
-    lazy val createUser: EitherT[F, String, String] = EitherT({
+    val createUser: EitherT[F, String, String] = EitherT({
       for {
         _ <- awsProxy.put(request.username, "Password" -> PasswordHashingObject.hashPassword(request.password))
       } yield (
