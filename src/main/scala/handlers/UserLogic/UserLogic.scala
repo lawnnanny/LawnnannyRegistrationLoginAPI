@@ -80,7 +80,7 @@ class UserLogicOperations {
     })
 
     val resultOfRegistration: EitherT[F, String, String] = for {
-      stuff <- userExists
+      _ <- userExists
       wasItCreated <- createUser
     } yield (wasItCreated)
 
