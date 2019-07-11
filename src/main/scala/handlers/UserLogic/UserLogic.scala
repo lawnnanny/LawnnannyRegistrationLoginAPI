@@ -78,9 +78,6 @@ class UserLogicOperations {
       } yield (
         Right("Account Was Created"))
     })
-    
-    println("Create user 1")
-    println("After create user")
 
     val resultOfRegistration: EitherT[F, String, String] = for {
       stuff <- userExists
