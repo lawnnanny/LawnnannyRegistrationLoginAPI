@@ -63,9 +63,6 @@ class UserLogicOperations {
 
   def handleUserNameRegistration[F[_] : Monad](request: UserNameAndPasswordEvent)(implicit awsProxy: DatabaseProxy[F, UserTable]) : F[MessageAndStatus]  = {
 
-    println(request.username)
-    println(request.password)
-
     val userExists: EitherT[F, String, String] = EitherT( for {
       querried <- awsProxy.get(request.username)
     } yield({
@@ -74,8 +71,6 @@ class UserLogicOperations {
         case None => Right("Account Will Be Created")
       }
     }))
-
-    //println(userExists.value)
 
     lazy val createUser: EitherT[F, String, String] = EitherT({
       for {
